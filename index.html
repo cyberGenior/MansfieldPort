@@ -720,17 +720,15 @@ $Student1 = $_POST['Student1'];
 
 
 
-$sql = "SELECT * FROM students WHERE First_name = '$Student1'";
+$sql ="SELECT * FROM students WHERE First_name = '$Student1'";
 $result = $con->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
+if($result->num_rows > 0) {
+    
     while($row = $result->fetch_assoc()) {
-          header("Location: profile.html");
+        echo "free";
     }
-} else {
-    header("Location: index.html");
-}
+} 
 
     }
 
@@ -879,14 +877,6 @@ $Password1 = $_POST['Password1'];
 
 $Password_verify = $_POST['Password_verify'];
 
-
-
-
-
-
-
-
-//This code create, binds and executes the sql query that is initiated bu the data inserted in the form.
 
 $stmt = $con->prepare("INSERT INTO `students` (First_name, Surname, DOB, SID, Email, Program, MOS) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
