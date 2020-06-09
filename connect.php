@@ -1,6 +1,6 @@
 <?php
 
-$con=new mysqli('localhost','root', '','datat');
+$con=new mysqli('localhost','xpress', 'freedom98','xegger');
 
 
 

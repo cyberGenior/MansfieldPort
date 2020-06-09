@@ -600,9 +600,9 @@ window.close();
       <br>
       <p>In his quest to represent his society through music, he has this time come up with a track called "Acrimony"</p>
     </div>
-    <div id="newsImage2">
+    <div id="newsImage4">
     </div>
-    <div id="newsLine2">
+    <div id="newsLine4">
       <p><b>What is Freedom to You? || 8.06.20 </b></p>
       <br>
       <p>In recent developmemnt, it has been seen that the Freedom of speech in Zambia is being threatened by intimidation and threats. Whats your Take on this issue/</p>
@@ -710,7 +710,7 @@ window.close();
 
     if(isset($_POST['submit'])){
 
-      $con=new mysqli('sql12.freesqldatabase.com','sql12330725', 'sql12330725','sql12330725');
+		$con=new mysqli('localhost','xpress', 'freedom98','xegger');
      $error ="";
 
 $Student1 = $_POST['Student1'];
@@ -854,43 +854,43 @@ if($result->num_rows > 0) {
 
 		if(isset($_POST['submit1'])){
 
-			$con=new mysqli('sql12.freesqldatabase.com','sql12330725', 'sql12330725','sql12330725');
-      
+			$con=new mysqli('localhost','xpress', 'freedom98','xegger'); 
+
 			$First_name = $_POST['First_name'];
 
-$Surname = $_POST['Surname'];
+			$Surname = $_POST['Surname'];
 
-$DOB = $_POST['DOB'];
+			$DOB = $_POST['DOB'];
 
-$SID = $_POST['SID'];
+			$SID = $_POST['SID'];
 
-$Email = $_POST['Email'];
+			$Email = $_POST['Email'];
 
-$Program = $_POST['Program'];
+			$Program = $_POST['Program'];
 
-$MOS = $_POST['MOS'];
+			$MOS = $_POST['MOS'];
 
-$Password1 = $_POST['Password1'];
+			$Password1 = $_POST['Password1'];
 
-$Password_verify = $_POST['Password_verify'];
-
-
-$stmt = $con->prepare("INSERT INTO `students` (First_name, Surname, DOB, SID, Email, Program, MOS) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-$stmt ->bind_param("sssisss",$First_name, $Surname, $DOB, $SID, $Email, $Program, $MOS);
-
-$stmt->execute();
+			$Password_verify = $_POST['Password_verify'];
 
 
+			$stmt = $con->prepare("INSERT INTO `students` (First_name, Surname, DOB, SID, Email, Program, MOS) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
+			$stmt ->bind_param("sssisss",$First_name, $Surname, $DOB, $SID, $Email, $Program, $MOS);
 
-
-$stmt->close();
+			$stmt->execute();
 
 
 
 
-$con->close();
+
+			$stmt->close();
+
+
+
+
+			$con->close();
 
 
 		}
