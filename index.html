@@ -1,5 +1,10 @@
 
+<?php
 
+session_start();
+
+
+?>
 <!DOCTYPE>
 <html>
 <head>
@@ -849,7 +854,12 @@ if($result->num_rows > 0) {
 
     <?php
 
+	if(isset($_POST['submit1'])){
 
+		include_once "insert.php";
+
+
+	}
 
 
 		
