@@ -839,13 +839,14 @@ document.getElementById("wideOption2").style.display="none";
 <?php 
 
 <<<<<<< HEAD
-$db = "news";
-	$con=new mysqli('localhost','root', '',$db); 
+$db = "126543";
+	$con=new mysqli('localhost','126543', 'Godlypath',$db); 
 =======
-$con = new mysqli("localhost","root","","news");
+
+$con=new mysqli('localhost','126543', 'Godlypath98',$db); 
 >>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 if ($con->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $con->connect_error);
 }
 
 
@@ -1277,8 +1278,8 @@ if (isset($_POST["submit2"])) {
 
 
 if (isset($_POST["submit2"])) {
-	$db = "velocity";
-	$con=new mysqli('localhost','root', '',$db); 
+	$db = "126543";
+	$con=new mysqli('localhost','126543', 'Godlypath98',$db); 
 >>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 	
 	$Student1 = $_POST['Student1'];
@@ -1496,9 +1497,8 @@ if(isset($_POST['submit1'])){
 <<<<<<< HEAD
 $db = "velocity";
 =======
-	$db = "velocity";
->>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
-	$con=new mysqli('localhost','root', '',$db); 
+$db = "126543";
+	$con=new mysqli('localhost','126543', 'Godlypath98',$db); 
 
 	$FIRST_NAME = $_POST['FIRST_NAME'];
 

@@ -324,13 +324,13 @@ document.getElementById("wideOption2").style.display="none";
 
 
 <?php 
-
-$con = new mysqli("localhost","root","","news");
+$db = "126543db2";
+	$con=new mysqli('localhost','126543', 'Godlypath98',$db); 
 if ($con->connect_error) {
 <<<<<<< HEAD
     die("Connection failed: " . $con->connect_error);
 =======
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $con->connect_error);
 >>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 }
 
