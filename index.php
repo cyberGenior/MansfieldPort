@@ -5,6 +5,7 @@ session_start();
 
 
 
+<<<<<<< HEAD
 if (isset($_SESSION['username'])) { 
 	
 	
@@ -37,6 +38,8 @@ $_SESSION['success'] = "";
 
 
 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 ?>
 <!DOCTYPE>
 <html>
@@ -96,6 +99,7 @@ window.close();
 
 
 
+<<<<<<< HEAD
 <script type="text/javascript">
 
 function logout(){
@@ -115,6 +119,29 @@ function logout(){
 
 
  
+=======
+
+
+  <script type="text/javascript">
+  	function logout(){
+  		document.getElementById('Learn').style.display="none";
+
+  		window.confirm("Do you eant to log out?");
+
+  		document.getElementById("logout").style.display= "none";
+
+  		document.getElementById("logImage").style.display= "none";
+
+  		document.getElementById("page1").style.display= "block";
+  		document.getElementById("log").style.display= "block";
+  		document.getElementById("sign").style.display= "block";
+
+  		document.getElementById("logValidate").innerHTML= "You must be logged in ";
+
+
+  	}
+  </script>
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
   <script type="text/javascript">
 
@@ -483,6 +510,7 @@ document.getElementById("wideOption2").style.display="none";
           <div id="wideMenu">
 
             <ul id="wideMenuContain">
+<<<<<<< HEAD
 			  <li id="child" onclick="openCourse()">Home</li>
               <li id="child" onclick="openCourse()">Zed Places</li>
               <li id="child" onclick="openAdmin_Portal()">Zed Stories</li>
@@ -518,11 +546,32 @@ document.getElementById("wideOption2").style.display="none";
 			
 			
 			<img onclick="openMore()" width="40px" height="40px" style="cursor:pointer;margin-top:10px;margin-left:970px; position:absolute; z-index:1;" src="IMAGES/more.png">
+=======
+              <li id="child" onclick="openCourse()">Courses</li>
+              <li id="child" onclick="openCourse()">Programs</li>
+              <li id="child" onclick="openAdmin_Portal()">Admin_Portal</li>
+              <li id="child" onclick="openStudent_Portal()">Student_Portal</li>
+
+            </ul>
+
+            <div id="mansfield" onclick="refresh()" style="background-image: url(IMAGES/logo-design-xegger-xpress.png); width: 63px; height: 60px; background-size: contain;z-index: 1; position: absolute;margin-left: 10px;margin-top: -1px; background-size:cover;"></div>
+            <div id="logImage"></div>
+            <h6 id="logValidate" style="display:none;margin-left:30px;font-family: Trebuchet MS; color: grey; font-weight: lighter; padding: 13px; margin-top: 4px; float: right; font-size: 19px; position: static; z-index: 1;">User Login..</h6>
+			
+			<h6 id="logValidate" style="margin-left:70px;margin-right:50px;font-family: Trebuchet MS; color: grey; font-weight: lighter; padding: 13px; margin-top: 4px; float: right; font-size: 19px; position: static; z-index: 1;"><?php if(!isset($_SESSION["user"])){echo "User Login..";}else{echo $_SESSION["user"] ;  }   ?></h6>
+
+			
+			<img onclick="openMore()" width="40px" height="40px" style="margin-top:10px;margin-left:1000px; position:absolute; z-index:1;" src="IMAGES/more.png">
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			<div id="wideOption2" style="background-color: black; width: 470px; height:640px; display:none;margin-left:900px;margin-top:37px; z-index: 1; position: absolute;opacity: 0.8; border-bottom: 2px solid orange; overflow: hidden;">
 
             <a href="javascript:void(0)" class="closebtn" onclick="closeMore()">×</a>
           </div>
+<<<<<<< HEAD
 			<img width="40px" height="40px" style="cursor:pointer;margin-top:10px;margin-left:1300px; position:absolute; z-index:1;" src="IMAGES/user.png">
+=======
+			<img width="40px" height="40px" style="margin-top:10px;margin-left:1400px; position:absolute; z-index:1;" src="IMAGES/user.png">
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
           </div>
 
           <div id="wideOption1" style="background-color: black; width: 470px; height:140px; display:none;margin-left:50px;margin-top:37px; z-index: 1; position: absolute;opacity: 0.8; border-bottom: 2px solid orange; overflow: hidden;">
@@ -549,11 +598,15 @@ document.getElementById("wideOption2").style.display="none";
             <div onclick="logForm2()" id="sign">Sign up</div>
           <div onclick="logForm()" id="log">Log in</div>
 
+<<<<<<< HEAD
 		  <form method="GET">
 				
 				<input onclick="logout()" type="submit" name="logout" value="Log out" name="logout" id="logout">
 
 		 </form>
+=======
+          <div onclick="logout()" id="logout">Log out</div>
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
           </div>
 
@@ -606,6 +659,7 @@ document.getElementById("wideOption2").style.display="none";
 
       <div id="thumb">
 
+<<<<<<< HEAD
 	  <div style="display:flex">
 
 
@@ -634,10 +688,15 @@ document.getElementById("wideOption2").style.display="none";
 
 
 
+=======
+
+  <div id="courseThumbnails1">
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 
 
+<<<<<<< HEAD
 
 
 </div>
@@ -689,6 +748,62 @@ document.getElementById("wideOption2").style.display="none";
 
 
 
+=======
+    <h4 style="margin: 210px 10px 2px;font-family: Trebuchet MS; font-size: 22px; text-align: center;">Facaulty of Natural Sciences</h4>
+
+  </div>
+
+  <div id="courseThumbnails2">
+
+
+
+
+    <h4 style="margin: 210px 10px 2px;font-family: Trebuchet MS; text-align: center;font-size: 22px;">Facaulty of Computer Sciences</h4>
+
+  </div>
+
+
+  <div id="courseThumbnails3">
+
+
+
+    <h4 style="margin: 210px 10px 2px;font-family: Trebuchet MS; text-align: center;font-size: 22px;">Facaulty of Teaching</h4>
+  </div>
+
+
+
+
+  <div id="thumb2">
+
+
+  <div id="courseThumbnails4">
+
+
+
+    <h4 style="margin: 210px 10px 2px;font-family: Trebuchet MS; text-align: center; font-size: 22px;">Facaulty of Business Administration</h4>
+  </div>
+
+  <div id="courseThumbnails5">
+
+
+
+    <h4 style="margin: 210px 10px 2px;font-family: Trebuchet MS; text-align: center; font-size: 22px;">Facaulty of Psychology</h4>
+
+  </div>
+
+
+
+  <div id="courseThumbnails6">
+
+
+
+    <h4 style="margin: 210px 10px 2px;font-family: Trebuchet MS; text-align: center; font-size: 22px;">Facaulty of Transport/Logistics</h4>
+  </div>
+
+
+
+  </div>
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 
@@ -699,6 +814,7 @@ document.getElementById("wideOption2").style.display="none";
 
   </div>
 
+<<<<<<< HEAD
 
 
 
@@ -709,14 +825,25 @@ document.getElementById("wideOption2").style.display="none";
     <h2 id="newsHead" style="font-family: Trebuchet MS; padding-left: 80px; font-size: 80px; text-align:center;">NEWS</h2>
 
     <hr style="margin-left: 458px; margin-right: 20px; width:800px; height: 1.12px; background-color: orange; border: none; text-align:center;margin-bottom:170px;">
+=======
+  <div id="news" style="margin-top: 800px; ">
+
+    <h2 id="newsHead" style="font-family: Trebuchet MS; padding-left: 60px; font-size: 30px; ">NEWS</h2>
+
+    <hr style="margin-left: 48px; margin-right: 20px; height: 1.12px; background-color: orange; border: none;">
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
     <div id="newsContainer">
 
 
 <?php 
 
+<<<<<<< HEAD
 $db = "news";
 	$con=new mysqli('localhost','root', '',$db); 
+=======
+$con = new mysqli("localhost","root","","news");
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 if ($con->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -732,18 +859,29 @@ if ($result->num_rows > 0) {
 
 
 		
+<<<<<<< HEAD
 		if($row['ID'] == 1){
 		
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		
 		?>
 		<div id="newsImage1">
 
+<<<<<<< HEAD
 		<?php
 
 		
 
 			//echo "<img src='images/'".$row['image']."'>";
 			
+=======
+		?><?php
+	 
+			echo   " 
+			
+			<img src=".$row['']."> ";
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			
 			
 			
@@ -789,6 +927,7 @@ if ($result->num_rows > 0) {
 
 
 				
+<<<<<<< HEAD
 		}
 		if($row['ID'] == 2){
 		
@@ -967,6 +1106,8 @@ if ($result->num_rows > 0) {
 							
 					}
 			
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 
@@ -1004,6 +1145,7 @@ $con->close();
 </div>		
 
 
+<<<<<<< HEAD
 <div style="margin:230px 10px 0px 200px; display :flex;bottom: 90px;">
 
 <div style="margin:20px;width:200px; height:200px; background-color:orange; border-radius:50%;;">
@@ -1031,6 +1173,10 @@ $con->close();
 
 
 
+=======
+
+		
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 	
 
 
@@ -1066,9 +1212,12 @@ $con->close();
     			<div id="formData">
 
 
+<<<<<<< HEAD
 					<p style="padding: 10px;text-align:center;font-size: 16px;  font-family: Trebuchet MS; color:red;" ><?php if($_SESSION['log']=""){ echo $_SESSION['log']=$er;} ?></p>
 
 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
     				<legend style="padding: 30px;margin-left: 42px;font-size: 23px; font-family: Trebuchet MS;">Student ID :</legend>
 
     				<input type="text" name="Student1" accept="numerial" placeholder="Student ID "  id="name1">
@@ -1077,7 +1226,11 @@ $con->close();
 
     				<input type="password" name="pass1" placeholder="password"  id="pass1">
 
+<<<<<<< HEAD
     				<input style="background-color:#79df80;" id="submit2" onclick="TransToAccount()" type="submit" name="submit2" value="LogIn">
+=======
+    				<input id="submit2" onclick="TransToAccount()" type="submit" name="submit2" value="LogIn">
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
     				<p style="padding-top: 14px;margin-left: 42px;font-size: 14px; padding-left: 30px;font-family: Trebuchet MS; ;
@@ -1114,11 +1267,19 @@ $con->close();
 
 <?php
 
+<<<<<<< HEAD
 $er = "";
 
 if (isset($_POST["submit2"])) {
 	$db = "velocity";
 	$con=new mysqli('localhost','root', '',$db);  
+=======
+
+
+if (isset($_POST["submit2"])) {
+	$db = "velocity";
+	$con=new mysqli('localhost','root', '',$db); 
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 	
 	$Student1 = $_POST['Student1'];
 	
@@ -1128,7 +1289,11 @@ if (isset($_POST["submit2"])) {
 	
 	
 	
+<<<<<<< HEAD
 
+=======
+	$_SESSION["user"] = $Student1;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		
 	$checkUser="SELECT * FROM `student` WHERE FIRST_NAME = '$Student1' &&  Password1 =  '$pass1' ";
 	
@@ -1136,17 +1301,26 @@ if (isset($_POST["submit2"])) {
 	
 	$userResult=mysqli_query($con,$checkUser);
 	
+<<<<<<< HEAD
 	if ($userResult->num_rows == 1) {
 
 		echo "<script>alert('Welcome $Student1')</script> ";
 
 
 		
+=======
+	if ($userResult->num_rows > 0) {
+		echo "<script>alert('Welcome $Student1')</script> ";
+
+
+		echo "<script type='text/javascript' >window.open('userPage.php')</script> ";
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		
 
 		echo "<script>document.getElementById('logForm').style.display='none';</script> ";
 
 		
+<<<<<<< HEAD
 	 
             $_SESSION['username'] = $Student1; 
               
@@ -1184,6 +1358,18 @@ if (isset($_POST["submit2"])) {
 		
 
 	
+=======
+		$_SESSION["verfied"] = $Student1;
+
+
+
+		
+	
+		
+	}else{
+
+		echo "<script type='text/javascript' >window.alert('Invalid Username or Password')</script> ";
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		
 	}
 	
@@ -1226,7 +1412,11 @@ if (isset($_POST["submit2"])) {
 
         <legend style="padding: 30px;margin-left: 42px;font-size: 23px; font-family: Trebuchet MS;">Student ID  :</legend>
 
+<<<<<<< HEAD
         <input readonly type="text" value="<?php echo uniqid() ?>" name="SID"  required=>
+=======
+        <input type="text" value="<?php echo(rand(1000,6000)); ?>" name="SID"  required=>
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
         <legend style="padding: 30px;margin-left: 42px;font-size: 23px; font-family: Trebuchet MS;">Email Address :</legend>
 
@@ -1303,7 +1493,11 @@ if (isset($_POST["submit2"])) {
 if(isset($_POST['submit1'])){
 
 	
+<<<<<<< HEAD
 $db = "velocity";
+=======
+	$db = "velocity";
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 	$con=new mysqli('localhost','root', '',$db); 
 
 	$FIRST_NAME = $_POST['FIRST_NAME'];
@@ -1326,6 +1520,7 @@ $db = "velocity";
 	$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 	$image_txt = $_FILES['image']['name'];
 
+<<<<<<< HEAD
 	
 
 	if($Password1 != $Password_verify){
@@ -1347,6 +1542,21 @@ $db = "velocity";
 	else{
 
 	
+=======
+	?>
+
+	<?php
+	if($Password1 != $Password_verify){
+
+	?>
+		<script>alert("Your passwords do not match")</script>;
+
+	<?php
+	}
+
+
+	else{
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		
 	$stmt = $con->prepare("INSERT INTO `student` (`FIRST_NAME`, `SURNAME`, `DOB`, `SID`, `EMAIL`, `PROGRAM`, `MOS`, `Password1`,`image`,`image_txt`) VALUES (?, ?, ?, ?, ?, ? , ?, ?, ?, ?)");
 
@@ -1361,6 +1571,7 @@ $db = "velocity";
 
 	<script>alert("Account Created Successfully, Please Login")</script>;
 		<?php
+<<<<<<< HEAD
 		
 		
 		   $_SESSION['username'] = $FIRST_NAME; 
@@ -1370,6 +1581,8 @@ $db = "velocity";
           
      
         header('location: /userPage.php'); 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 	$stmt->close();
 	}
 
@@ -1760,7 +1973,11 @@ $db = "velocity";
 			color: white;
 			font-family:kindel;
 			text-align: center;
+<<<<<<< HEAD
 			margin-top: -150px;
+=======
+			margin-top: -350px;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			letter-spacing: 7px;
 			font-style: italic;
 			font-size: 28px;
@@ -1951,7 +2168,11 @@ font-weight:lighter;
 }
 
 		#thumb{
+<<<<<<< HEAD
 		
+=======
+			display: flex;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			box-sizing: border-box;
 			height: 400px;
 			margin: 20px;
@@ -1998,7 +2219,144 @@ font-weight:lighter;
 
 
 
+<<<<<<< HEAD
 	
+=======
+		#courseThumbnails1{
+			cursor: pointer;
+			color: white;
+			width: 500px;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			height: 250px;
+			background-color: white;
+			z-index: 1;
+			margin-top:80px;
+			margin-right: 13px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/nat.jpg);
+
+		}
+
+		#courseThumbnails2{
+			cursor: pointer;
+			width: 500px;
+			color: white;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			height: 250px;
+
+			background-color: white;
+			z-index: 1;
+			margin-top:80px;
+			margin-right: 18px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/tech.jpg);
+
+		}
+
+		#courseThumbnails3{
+			cursor: pointer;
+			box-shadow: 0px 0px 20px lightgrey;
+			width: 500px;
+			height: 250px;
+			color: white;
+			background-color: white;
+			z-index: 1;
+			margin-top: 80px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/teach.jpg);
+
+		}
+
+		#learn{
+			transition: 0.6s ease-in-out;
+		}
+
+    #mansfield{
+      animation: mansfield-spin infinite 20s linear;
+    }
+
+    keyframes mansfield-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+
+
+		#thumb2{
+
+			height: 400px;
+			width: auto;
+			align-content: center;
+			margin-left: -137px;
+			margin-top: 10px;
+			display: flex;
+			box-sizing: border-box;
+		}
+
+
+		#courseThumbnails4{
+			cursor: pointer;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			background-color: white;
+			width: 500px;
+			color: white;
+			height: 250px;
+			margin-right: 13px;
+			z-index: 1;
+			margin-top: 340px;
+			margin-left: -1400px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/admin.png);
+		}
+
+		#courseThumbnails5{
+			cursor: pointer;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			background-color: white;
+			width: 500px;
+			height: 250px;
+color: white;
+			margin-right: 18px;
+			z-index: 1;
+			margin-top: 340px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/psyc.jpg);
+
+		}
+
+		#courseThumbnails6{
+			cursor: pointer;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			background-color: white;
+			width: 500px;
+			height: 250px;
+
+			position: relative;
+color: white;
+			z-index: -1;
+			margin-top: 340px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/log.jpg);
+
+		}
+
+
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 		#logForm{
 			width: 600px;
@@ -2174,6 +2532,7 @@ font-weight:lighter;
 			width: auto;
 			z-index: -1;
 			position: relative;
+<<<<<<< HEAD
 			height: 500px;
 			background-image: url(IMAGES/main.jpg);
 			background-size: cover;
@@ -2184,11 +2543,23 @@ font-weight:lighter;
 		#logout{
 			width: 85px;
 			height: 35px;
+=======
+			height: 780px;
+			background-image: url(IMAGES/tech.jpg);
+			background-size: cover;
+			margin-top: -60px;
+
+		}
+		#logout{
+			width: 95px;
+			height: 22px;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			display: none;
 			background-color: orange;
 			border-radius: 30px;
 			border: 1px solid white;
 			float: right;
+<<<<<<< HEAD
 			margin-right: 70px;
 			opacity: 0.9;
 			font-family: Trebuchet MS;
@@ -2196,6 +2567,15 @@ font-weight:lighter;
 			
 			color: white;
 			padding-right:20px;
+=======
+			margin-right: 20px;
+			opacity: 0.9;
+			font-family: Trebuchet MS;
+			font-size: 10px;
+			padding-top: 9px;
+			color: white;
+			text-align: center;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			margin-top: 12px;
 			cursor: pointer;
 

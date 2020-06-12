@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 session_start(); 
    
@@ -26,6 +27,9 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['username']); 
     header("location: login.php"); 
 } 
+=======
+session_start();
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 ?>
 <!DOCTYPE html>
@@ -66,10 +70,13 @@ document.getElementById("wideOption1").style.display="none";
 
 }
 
+<<<<<<< HEAD
 function ref(){
 	location.assign("index.php"); 
 }
 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 
@@ -198,6 +205,7 @@ document.getElementById("wideOption2").style.display="none";
           <div id="wideMenu">
 
 		  <ul id="wideMenuContain">
+<<<<<<< HEAD
               <li id="child" onclick="openCourse()">Home</li>
               <li id="child" onclick="openCourse()">Zed Places</li>
               <li id="child" onclick="openAdmin_Portal()">Zed Stories</li>
@@ -232,6 +240,24 @@ document.getElementById("wideOption2").style.display="none";
             <a href="javascript:void(0)" class="closebtn" onclick="closeMore()">×</a>
           </div>
 			<img width="40px" height="40px" style="margin-top:10px;margin-left:1300px; position:absolute; z-index:1;" src="IMAGES/user.png">
+=======
+              <li id="child" onclick="openCourse()">Courses</li>
+              <li id="child" onclick="openCourse()">Programs</li>
+              <li id="child" onclick="openAdmin_Portal()">Admin_Portal</li>
+              <li id="child" onclick="openStudent_Portal()">Student_Portal</li>
+
+            </ul>
+
+            <div id="mansfield" onclick="refresh()" style="background-image: url(IMAGES/logo-ci.png); width: 75px; height: 75px; background-size: contain;z-index: 1; position: absolute;margin-left: 10px;margin-top: -3px;"></div>
+            <div id="logImage"></div>
+            <h6 id="logValidate" style="margin-right:60px;margin-left:60px;font-family: Trebuchet MS; color: grey; font-weight: lighter; padding: 13px; margin-top: 4px; float: right; font-size: 19px; position: static; z-index: 1;"><?php if(!isset($_SESSION["user"])){echo "User Login..";}else{echo $_SESSION["user"] ;  }   ?></h6>
+			<img onclick="openMore()" width="40px" height="40px" style="cursor:pointer;margin-top:10px;margin-left:1000px; position:absolute; z-index:1;" src="IMAGES/more.png">
+			<div id="wideOption2" style="background-color: black; width: 470px; height:640px; display:none;margin-left:900px;margin-top:37px; z-index: 1; position: absolute;opacity: 0.8; border-bottom: 2px solid orange; overflow: hidden;">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeMore()">×</a>
+          </div>
+			<img width="40px" height="40px" style="margin-top:10px;margin-left:1400px; position:absolute; z-index:1;" src="IMAGES/user.png">
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
           </div>
 
           <div id="wideOption1" style="background-color: black; width: 470px; height:140px; display:none;margin-left:50px;margin-top:37px; z-index: 1; position: absolute;opacity: 0.8; border-bottom: 2px solid orange; overflow: hidden;">
@@ -255,12 +281,18 @@ document.getElementById("wideOption2").style.display="none";
           </div>
 
 
+<<<<<<< HEAD
          <form method="GET">
 				
 					<input type="submit" name="logout" value="Log out" name="logout" id="logout">
 
 		 </form>
 
+=======
+         
+
+          <div onclick="logout()" name="logout" id="logout">Log out</div>
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
           </div>
 
@@ -274,8 +306,11 @@ document.getElementById("wideOption2").style.display="none";
 </div>
 </div>
 
+<<<<<<< HEAD
 <div style="width:100vw; height:320px; background-image:url(IMAGES/usertop.png);margin-top:67px;background-size:contain;"></div>
 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 <div  id="Entertainment">
 
@@ -292,7 +327,11 @@ document.getElementById("wideOption2").style.display="none";
 
 $con = new mysqli("localhost","root","","news");
 if ($con->connect_error) {
+<<<<<<< HEAD
     die("Connection failed: " . $con->connect_error);
+=======
+    die("Connection failed: " . $conn->connect_error);
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 }
 
 
@@ -306,6 +345,7 @@ if ($result->num_rows > 0) {
 
 
 		
+<<<<<<< HEAD
 	
 		
 		if($_SESSION['selectedNews'] = $row['ID'] == 1){
@@ -551,6 +591,64 @@ if ($result->num_rows > 0) {
 						}
 				
 	
+=======
+		
+		?>
+		<div id="newsImage1">
+
+		<?php
+	 
+			echo   " 
+			
+			<img src=".$row[''].">";
+			
+			
+			
+		
+			
+		
+		echo "</div>";
+
+		?>
+		
+		<div id="newsLine1">
+
+		<?php
+
+
+			echo "<h1>"."<b>".$row["heading"]."</b>"."<h1>";
+
+					
+
+					
+
+			?>
+
+		
+			<br>
+
+			<div id="newsinfo">
+			<?php
+
+			echo "<p>".$row["info"]."</p>";
+			?>
+			
+
+			</div>
+
+			</div>
+		
+
+<?php
+
+
+
+
+
+				
+
+
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
     
 } 
@@ -636,6 +734,7 @@ $con->close();
 
 
 
+<<<<<<< HEAD
 <div id="fb-root"></div>
 <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"></script>
 
@@ -644,16 +743,21 @@ $con->close();
 
 <div style="margin:50px; width="80px; height="500px;">
 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 
 
+<<<<<<< HEAD
 </div>
 
 </div>
 
 
 
+=======
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 <footer id="footer-box" style="margin-top:500px;">
@@ -898,7 +1002,11 @@ $con->close();
 			position: sticky;
 			height: 45px;
 
+<<<<<<< HEAD
 			box-shadow:0px 0px 30px light-grey;
+=======
+
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 			z-index: 1;
@@ -1011,7 +1119,62 @@ $con->close();
 		}
 
 
+<<<<<<< HEAD
 	
+=======
+		#courseThumbnails4{
+			cursor: pointer;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			background-color: white;
+			width: 500px;
+			color: white;
+			height: 250px;
+			margin-right: 13px;
+			z-index: 1;
+			margin-top: 340px;
+			margin-left: -1400px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/admin.png);
+		}
+
+		#courseThumbnails5{
+			cursor: pointer;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			background-color: white;
+			width: 500px;
+			height: 250px;
+color: white;
+			margin-right: 18px;
+			z-index: 1;
+			margin-top: 340px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/psyc.jpg);
+
+		}
+
+		#courseThumbnails6{
+			cursor: pointer;
+			border-right: 1px solid lightgrey;
+			box-shadow: 0px 0px 20px lightgrey;
+			background-color: white;
+			width: 500px;
+			height: 250px;
+
+			position: relative;
+color: white;
+			z-index: -1;
+			margin-top: 340px;
+			border: 1.5px solid orange;
+			background-size: cover;
+			background-image: url(IMAGES/log.jpg);
+
+		}
+
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 
 
 		#logForm{
@@ -1134,7 +1297,11 @@ $con->close();
 		  position: absolute;
 		  top: 10px;
 		  right: 25px;
+<<<<<<< HEAD
 		  font-size: 35px;
+=======
+		  font-size: 55px;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		  margin-left: 50px;
 		  text-decoration: none;
 		  color: orange;
@@ -1145,6 +1312,7 @@ $con->close();
 
 
 		#menuNav{
+<<<<<<< HEAD
 			width: 100vw;
 			height: 60px;
 			background-color:white;
@@ -1152,11 +1320,28 @@ $con->close();
 			box-shadow:0px 0px 15px lightgray;
 
 			position: fixed;
+=======
+			width: auto;
+			height: 60px;
+			background-color:white;
+      border-Bottom = 2px solid orange;
+	  box-shadow: 0px 0px 20px lightgrey;
+
+
+			position: static;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			z-index: 1;
 			top: 0;
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 		}
 		#navTitle{
 			padding: 10px;
@@ -1191,8 +1376,13 @@ $con->close();
 
 		}
 		#logout{
+<<<<<<< HEAD
 			width: 85px;
 			height: 35px;
+=======
+			width: 75px;
+			height: 22px;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			display: block;
 			background-color: orange;
 			border-radius: 30px;
@@ -1202,9 +1392,15 @@ $con->close();
 			opacity: 0.9;
 			font-family: Trebuchet MS;
 			font-size: 10px;
+<<<<<<< HEAD
 			
 			color: white;
 			padding-right:20px;
+=======
+			padding-top: 9px;
+			color: white;
+			text-align: center;
+>>>>>>> 817448eedc48d8bdc4390a1f66c657bbc7982075
 			margin-top: 12px;
 			cursor: pointer;
 
