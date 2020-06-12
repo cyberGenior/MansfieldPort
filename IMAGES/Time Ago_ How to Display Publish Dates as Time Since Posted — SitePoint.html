@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/ -->
+<html lang="en" data-react-helmet="lang"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Gatsby 2.20.25"><title>Time Ago: How to Display Publish Dates as Time Since Posted — SitePoint</title><style type="text/css">svg:not(:root).svg-inline--fa {
+  overflow: visible;
+}
+
+.svg-inline--fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.225em;
+}
+.svg-inline--fa.fa-w-1 {
+  width: 0.0625em;
+}
+.svg-inline--fa.fa-w-2 {
+  width: 0.125em;
+}
+.svg-inline--fa.fa-w-3 {
+  width: 0.1875em;
+}
+.svg-inline--fa.fa-w-4 {
+  width: 0.25em;
+}
+.svg-inline--fa.fa-w-5 {
+  width: 0.3125em;
+}
+.svg-inline--fa.fa-w-6 {
+  width: 0.375em;
+}
+.svg-inline--fa.fa-w-7 {
+  width: 0.4375em;
+}
+.svg-inline--fa.fa-w-8 {
+  width: 0.5em;
+}
+.svg-inline--fa.fa-w-9 {
+  width: 0.5625em;
+}
+.svg-inline--fa.fa-w-10 {
+  width: 0.625em;
+}
+.svg-inline--fa.fa-w-11 {
+  width: 0.6875em;
+}
+.svg-inline--fa.fa-w-12 {
+  width: 0.75em;
+}
+.svg-inline--fa.fa-w-13 {
+  width: 0.8125em;
+}
+.svg-inline--fa.fa-w-14 {
+  width: 0.875em;
+}
+.svg-inline--fa.fa-w-15 {
+  width: 0.9375em;
+}
+.svg-inline--fa.fa-w-16 {
+  width: 1em;
+}
+.svg-inline--fa.fa-w-17 {
+  width: 1.0625em;
+}
+.svg-inline--fa.fa-w-18 {
+  width: 1.125em;
+}
+.svg-inline--fa.fa-w-19 {
+  width: 1.1875em;
+}
+.svg-inline--fa.fa-w-20 {
+  width: 1.25em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: 0.3em;
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: 0.3em;
+  width: auto;
+}
+.svg-inline--fa.fa-border {
+  height: 1.5em;
+}
+.svg-inline--fa.fa-li {
+  width: 2em;
+}
+.svg-inline--fa.fa-fw {
+  width: 1.25em;
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: #ff253a;
+  border-radius: 1em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  height: 1.5em;
+  line-height: 1;
+  max-width: 5em;
+  min-width: 1.5em;
+  overflow: hidden;
+  padding: 0.25em;
+  right: 0;
+  text-overflow: ellipsis;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: 0;
+  right: 0;
+  top: auto;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: 0;
+  left: 0;
+  right: auto;
+  top: auto;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  right: 0;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: 0;
+  right: auto;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.fa-lg {
+  font-size: 1.3333333333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: 2.5em;
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: -2em;
+  position: absolute;
+  text-align: center;
+  width: 2em;
+  line-height: inherit;
+}
+
+.fa-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.fa-pull-left {
+  float: left;
+}
+
+.fa-pull-right {
+  float: right;
+}
+
+.fa.fa-pull-left,
+.fas.fa-pull-left,
+.far.fa-pull-left,
+.fal.fa-pull-left,
+.fab.fa-pull-left {
+  margin-right: 0.3em;
+}
+.fa.fa-pull-right,
+.fas.fa-pull-right,
+.far.fa-pull-right,
+.fal.fa-pull-right,
+.fab.fa-pull-right {
+  margin-left: 0.3em;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+          animation: fa-spin 2s infinite linear;
+}
+
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+          animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
+.fa-flip-both, .fa-flip-horizontal.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(-1, -1);
+          transform: scale(-1, -1);
+}
+
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical,
+:root .fa-flip-both {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.fa-stack {
+  display: inline-block;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: #fff;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: 0.4;
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: 0.4;
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse {
+  color: #fff;
+}</style><link data-react-helmet="true" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/css" as="style"><link data-react-helmet="true" rel="stylesheet" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/css" type="text/css"><link data-react-helmet="true" href="https://dab1nmslvvntp.cloudfront.net/"><link data-react-helmet="true" href="https://d2sis3lil8ndrq.cloudfront.net/"><link data-react-helmet="true" href="https://bid.g.doubleclick.net/"><meta data-react-helmet="true" name="description" content="Osvaldas Valutis explains a simple technique for keeping your publish dates fresh and up to date."><meta data-react-helmet="true" property="og:title" content="Time Ago: How to Display Publish Dates as Time Since Posted — SitePoint"><meta data-react-helmet="true" property="og:description" content="Osvaldas Valutis explains a simple technique for keeping your publish dates fresh and up to date."><meta data-react-helmet="true" property="og:type" content="website"><meta data-react-helmet="true" property="twitter:account_id" content="15743570"><meta data-react-helmet="true" name="twitter:card" content="summary"><meta data-react-helmet="true" name="twitter:title" content="Time Ago: How to Display Publish Dates as Time Since Posted — SitePoint"><meta data-react-helmet="true" name="twitter:description" content="Osvaldas Valutis explains a simple technique for keeping your publish dates fresh and up to date."><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/1991563104285178" async=""></script><script async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/fbevents.js.download"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/insight.min.js.download"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/uwt.js.download"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/hotjar-1088957.js.download"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/f.txt"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/analytics.js.download"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/js"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/analytics.js.download"></script><script type="text/javascript" async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/recaptcha__en.js.download"></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/cmp.js.download" async="" type="text/javascript"></script><script async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/gtm.js.download"></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/cmp.js.download" async="" type="text/javascript"></script><script data-react-helmet="true" type="application/ld+json">{"@context":"http://schema.org","@type":"Article","headline":"Time Ago: How to Display Publish Dates as Time Since Posted — SitePoint","url":"https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/","articleSection":"Programming","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/"},"author":[{"@type":"Person","name":"Osvaldas Valutis"}],"publisher":{"@type":"Organization","name":"SitePoint","logo":{"@type":"ImageObject","url":"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2019/12/1576634464sitepoint-app-icon-512.png"}},"dateCreated":"2016-01-20T15:00:11","datePublished":"2016-01-20T15:00:11","dateModified":"2016-02-03 05:33:36","image":{"@type":"ImageObject"},"keywords":"date,datetime,RalphM,timestamp"}</script><script>window.dataLayer = window.dataLayer || [];window.dataLayer.push({"platform":"gatsby"}); (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer', 'GTM-KL8PMMW');</script><link rel="icon" href="https://www.sitepoint.com/icons/icon-48x48.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="manifest" href="https://www.sitepoint.com/manifest.webmanifest"><meta name="theme-color" content="#3a3a3a"><link rel="apple-touch-icon" sizes="48x48" href="https://www.sitepoint.com/icons/icon-48x48.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="72x72" href="https://www.sitepoint.com/icons/icon-72x72.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="96x96" href="https://www.sitepoint.com/icons/icon-96x96.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="144x144" href="https://www.sitepoint.com/icons/icon-144x144.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="192x192" href="https://www.sitepoint.com/icons/icon-192x192.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="256x256" href="https://www.sitepoint.com/icons/icon-256x256.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="384x384" href="https://www.sitepoint.com/icons/icon-384x384.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="apple-touch-icon" sizes="512x512" href="https://www.sitepoint.com/icons/icon-512x512.png?v=5ffb031539806d560ce4a4510a588e7d"><link rel="sitemap" type="application/xml" href="https://www.sitepoint.com/sitemap.xml"><style data-styled="active" data-styled-version="5.1.0"></style><link rel="alternate" type="application/rss+xml" title="SitePoint" href="https://www.sitepoint.com/sitepoint.rss"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/f5827caf6186e5c689d2efec58e563be7dc9b201-bbb63ee514945e8d2aa4.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/framework-e70cdacaba893b4d7727.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/component---src-templates-post-post-js-b671dd100a5d42351d71.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/app-532a94bd20cb22242f40.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/2f65259b2cfe4675599fed9cf756f67879aa3179-ff3970ca26df2d903e60.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/a9a7754c-af332f070836f35a283d.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/ec1189df-0fa34f9c7c4814c5cf93.js.download"><link as="script" rel="preload" href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/webpack-runtime-bd25856cde0959fc6148.js.download"><link as="fetch" rel="preload" href="https://www.sitepoint.com/page-data/counting-the-ago-time-how-to-keep-publish-dates-fresh/page-data.json?v=1" crossorigin="anonymous"><link as="fetch" rel="preload" href="https://www.sitepoint.com/page-data/app-data.json?v=1" crossorigin="anonymous"><script charset="utf-8" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/20-6fd46ec09c7979de873f.js.download"></script><link rel="canonical" key="https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/" href="https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/" data-react-helmet="true"><meta property="og:image" content="" data-react-helmet="true"><meta name="twitter:image" content="" data-react-helmet="true"><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/ads.js.download" defer="true" data-react-helmet="true"></script><script type="text/javascript" async="true" data-react-helmet="true">var elem = document.createElement('script');
+elem.src = 'https://quantcast.mgr.consensu.org/cmp.js';
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+(function() {
+var gdprAppliesGlobally = true;
+function addFrame() {
+  if (!window.frames['__cmpLocator']) {
+  if (document.body) {
+    var body = document.body,
+    iframe = document.createElement('iframe');
+    iframe.style.cssText = "display:none";
+    iframe.name = '__cmpLocator';
+    body.appendChild(iframe);
+  } else {
+    // In the case where this stub is located in the head,
+    // this allows us to inject the iframe more quickly than
+    // relying on DOMContentLoaded or other events.
+    setTimeout(addFrame, 5);
+  }
+  }
+}
+addFrame();
+function cmpMsgHandler(event) {
+  var msgIsString = typeof event.data === "string";
+  var json;
+  if(msgIsString) {
+  json = event.data.indexOf("__cmpCall") != -1 ? JSON.parse(event.data) : {};
+  } else {
+  json = event.data;
+  }
+  if (json.__cmpCall) {
+  var i = json.__cmpCall;
+  window.__cmp(i.command, i.parameter, function(retValue, success) {
+    var returnMsg = {"__cmpReturn": {
+    "returnValue": retValue,
+    "success": success,
+    "callId": i.callId
+    }};
+    event.source.postMessage(msgIsString ?
+    JSON.stringify(returnMsg) : returnMsg, '*');
+  });
+  }
+}
+window.__cmp = function (c) {
+  var b = arguments;
+  if (!b.length) {
+  return __cmp.a;
+  }
+  else if (b[0] === 'ping') {
+  b[2]({"gdprAppliesGlobally": gdprAppliesGlobally,
+    "cmpLoaded": false}, true);
+  } else if (c == '__cmp')
+  return false;
+  else {
+  if (typeof __cmp.a === 'undefined') {
+    __cmp.a = [];
+  }
+  __cmp.a.push([].slice.apply(b));
+  }
+}
+window.__cmp.gdprAppliesGlobally = gdprAppliesGlobally;
+window.__cmp.msgHandler = cmpMsgHandler;
+if (window.addEventListener) {
+  window.addEventListener('message', cmpMsgHandler, false);
+}
+else {
+  window.attachEvent('onmessage', cmpMsgHandler);
+}
+})();
+window.__cmp('init', {
+  'Language': 'en',
+  'Initial Screen Reject Button Text': 'I do not accept',
+  'Initial Screen Accept Button Text': 'I accept',
+  'Purpose Screen Body Text': 'You can set your consent preferences and determine how you want your data to be used based on the purposes below. You may set your preferences for us independently from those of third-party partners. Each purpose has a description so that you know how we and partners use your data.',
+  'Vendor Screen Body Text': 'You can set consent preferences for each individual third-party company below. Expand each company list item to see what purposes they use data for to help make your choices. In some cases, companies may disclose that they use your data without asking for your consent, based on their legitimate interests. You can click on their privacy policies for more information and to opt out.',
+  'Vendor Screen Accept All Button Text': 'Accept all',
+  'Vendor Screen Reject All Button Text': 'Reject all',
+  'Initial Screen Body Text': "We use cookies to provide you the best possible experience of SitePoint. Want to know more? Read our Terms of Service and privacy policy. Have questions? Please contact support@sitepoint.com, we're happy to help!",
+  'Publisher Name': 'Sitepoint',
+  'Display UI': 'inEU',
+  'Publisher Purpose IDs': [1,2,4,5],
+  'UI Layout': 'banner',
+  'Non-Consent Display Frequency': 15,
+  'Consent Scope': 'global',
+  'Display Persistent Consent Link': true,
+  'Off On Label': 'Off',
+  'Custom Links Displayed on Initial Screen': [ "[Terms of Services](https://www.sitepoint.com/legals/)", "[Privacy Policy](https://www.sitepoint.com/privacy-policy/)"],
+});</script><link rel="prefetch" href="https://www.sitepoint.com/page-data/author/ovalutis/page-data.json?v=1" crossorigin="anonymous" as="fetch"><link rel="prefetch" href="https://www.sitepoint.com/page-data/author/ovalutis/page-data.json?v=1" crossorigin="anonymous" as="fetch"><link rel="prefetch" href="https://www.sitepoint.com/component---src-templates-author-index-js-131edb93f076f8a09f52.js"><link rel="prefetch" href="https://www.sitepoint.com/component---src-templates-author-index-js-131edb93f076f8a09f52.js"><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/f(1).txt"></script><script async="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/modules.5cd4945c79de888b7e62.js.download" charset="utf-8"></script><style type="text/css">iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}</style></head><body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL8PMMW" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div display="block" role="smartbar" class="styleSmartbar__SmartBar-sc-1xwunlh-0 aLNtM"><div class="sbBody"><div class="sbText"><span><strong>Watch 40 tech talks for free</strong> - expires June <strong class="underline">16th!</strong></span></div><div class="sbCountdown"><span class="day">5d&nbsp;</span><span class="hours">03hrs&nbsp;</span><span class="minutes">49min&nbsp;</span><span class="seconds">26sec</span></div><div class="sbButton"><a href="https://www.sitepoint.com/premium/library/tech-talks?utm_source=smartbar&amp;utm_medium=blog&amp;utm_campaign=techtalksfree">Access Now</a></div><button class="sbClose" aria-label="Aria Close Button"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 22.6 22.6" style="height: 1em; width: 1em;"><rect x="8.3" y="-1.7" transform="matrix(0.7071 0.7071 -0.7071 0.7071 11.3137 -4.6863)" width="6" height="26"></rect><rect x="8.3" y="-1.7" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 27.3137 11.3137)" width="6" height="26"></rect></svg></button></div></div><header class="styledHeader__StyledHeader-vt4ff6-10 fEOfly" style="margin-top: 67px;"><a id="skip-navigation" href="https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/#main-content" class="styledHeader__SkipNavigation-vt4ff6-0 bVclpN">Skip to main content</a><nav aria-label="Menu bar" class="styledHeader__NavigationBar-vt4ff6-3 eNFJfX"><div class="styledHeader__Container-vt4ff6-11 RzLru"><a aria-label="SitePoint" class="styledHeader__LogoLink-vt4ff6-1 oGXMj" href="https://www.sitepoint.com/"><svg viewBox="0 0 123 27" role="img" focusable="false"><title>SitePoint</title><g fill-rule="evenodd"><path d="M31.36,16.75 C31.56,17.07 31.82,17.31 32.14,17.50 C32.46,17.68 32.82,17.82 33.23,17.89 C33.63,17.97 34.05,18.01 34.48,18.01 C34.81,18.01 35.16,17.99 35.52,17.94 C35.89,17.89 36.22,17.81 36.53,17.68 C36.83,17.55 37.08,17.36 37.28,17.11 C37.48,16.87 37.58,16.55 37.58,16.17 C37.58,15.64 37.37,15.24 36.96,14.97 C36.55,14.69 36.03,14.47 35.41,14.31 C34.79,14.14 34.12,13.99 33.39,13.85 C32.66,13.71 31.99,13.52 31.37,13.27 C30.75,13.03 30.23,12.68 29.82,12.23 C29.41,11.78 29.20,11.16 29.20,10.36 C29.20,9.73 29.34,9.20 29.63,8.75 C29.92,8.30 30.30,7.94 30.75,7.66 C31.20,7.38 31.72,7.17 32.29,7.03 C32.86,6.90 33.42,6.83 33.99,6.83 C34.71,6.83 35.38,6.89 35.99,7.01 C36.61,7.13 37.15,7.34 37.62,7.63 C38.09,7.93 38.46,8.33 38.75,8.83 C39.03,9.34 39.19,9.96 39.24,10.72 L37.13,10.72 C37.10,10.32 36.99,9.98 36.81,9.72 C36.63,9.46 36.40,9.25 36.12,9.08 C35.84,8.92 35.53,8.81 35.19,8.74 C34.85,8.66 34.51,8.63 34.16,8.63 C33.84,8.63 33.53,8.65 33.20,8.70 C32.88,8.75 32.59,8.83 32.32,8.95 C32.06,9.07 31.84,9.23 31.68,9.43 C31.51,9.63 31.43,9.89 31.43,10.21 C31.43,10.56 31.56,10.86 31.82,11.09 C32.07,11.32 32.40,11.51 32.80,11.66 C33.19,11.82 33.64,11.95 34.13,12.05 C34.63,12.15 35.13,12.26 35.62,12.37 C36.15,12.49 36.67,12.62 37.17,12.78 C37.67,12.94 38.12,13.15 38.51,13.42 C38.90,13.68 39.21,14.01 39.45,14.41 C39.69,14.81 39.81,15.31 39.81,15.90 C39.81,16.66 39.65,17.28 39.33,17.77 C39.01,18.27 38.58,18.67 38.06,18.98 C37.54,19.28 36.96,19.49 36.30,19.61 C35.65,19.73 35.00,19.79 34.36,19.79 C33.65,19.79 32.97,19.72 32.32,19.58 C31.68,19.43 31.11,19.20 30.61,18.87 C30.12,18.54 29.72,18.11 29.42,17.57 C29.13,17.03 28.96,16.38 28.93,15.61 L31.03,15.61 C31.05,16.06 31.16,16.44 31.36,16.75" id="Fill-1"></path><path d="M42.27,7.12 L44.37,7.12 L44.37,19.53 L42.27,19.53 L42.27,7.12 Z" id="Fill-2"></path><path d="M53.13,7.12 L53.13,8.92 L50.57,8.92 L50.57,16.62 C50.57,16.86 50.59,17.05 50.63,17.20 C50.67,17.34 50.75,17.46 50.87,17.54 C50.99,17.62 51.15,17.67 51.35,17.69 C51.56,17.71 51.83,17.73 52.16,17.73 L53.13,17.73 L53.13,19.53 L51.51,19.53 C50.97,19.53 50.50,19.49 50.11,19.42 C49.72,19.35 49.41,19.22 49.17,19.02 C48.93,18.83 48.75,18.56 48.64,18.21 C48.52,17.86 48.46,17.39 48.46,16.81 L48.46,8.92 L46.28,8.92 L46.28,7.12 L48.46,7.12 L48.46,3.39 L50.57,3.39 L50.57,7.12 L53.13,7.12" id="Fill-3"></path><path d="M64.53,18.73 C63.57,19.44 62.36,19.79 60.91,19.79 C59.89,19.79 59.00,19.63 58.25,19.31 C57.49,18.99 56.86,18.54 56.35,17.97 C55.84,17.39 55.45,16.70 55.20,15.90 C54.94,15.10 54.80,14.23 54.76,13.29 C54.76,12.34 54.91,11.48 55.21,10.69 C55.51,9.91 55.92,9.23 56.46,8.65 C57.00,8.08 57.63,7.63 58.37,7.31 C59.11,6.99 59.91,6.83 60.79,6.83 C61.93,6.83 62.87,7.05 63.63,7.51 C64.38,7.97 64.98,8.55 65.44,9.25 C65.89,9.96 66.20,10.73 66.38,11.56 C66.55,12.39 66.62,13.18 66.59,13.93 L56.99,13.93 C56.98,14.48 57.04,14.99 57.19,15.48 C57.34,15.97 57.58,16.40 57.91,16.78 C58.24,17.16 58.66,17.46 59.18,17.68 C59.69,17.90 60.29,18.01 60.98,18.01 C61.88,18.01 62.61,17.82 63.18,17.41 C63.75,17.02 64.13,16.41 64.31,15.59 L66.39,15.59 C66.11,16.98 65.49,18.03 64.53,18.73 L64.53,18.73 Z M64.02,10.76 C63.83,10.33 63.58,9.96 63.25,9.65 C62.93,9.34 62.55,9.09 62.11,8.90 C61.68,8.72 61.19,8.63 60.66,8.63 C60.12,8.63 59.62,8.72 59.19,8.90 C58.75,9.09 58.37,9.34 58.06,9.66 C57.75,9.98 57.50,10.35 57.32,10.78 C57.13,11.20 57.03,11.65 56.99,12.13 L64.36,12.13 C64.32,11.65 64.21,11.20 64.02,10.76 L64.02,10.76 Z" id="Fill-4"></path><path d="M70.95,7.12 L70.95,8.80 L71.00,8.80 C71.35,8.11 71.89,7.61 72.64,7.30 C73.38,6.98 74.20,6.83 75.09,6.83 C76.09,6.83 76.95,7.00 77.68,7.36 C78.42,7.71 79.03,8.18 79.52,8.78 C80.01,9.38 80.37,10.08 80.62,10.86 C80.87,11.65 80.99,12.48 80.99,13.36 C80.99,14.24 80.87,15.07 80.63,15.85 C80.39,16.64 80.03,17.32 79.54,17.91 C79.06,18.49 78.44,18.95 77.71,19.29 C76.97,19.62 76.12,19.79 75.14,19.79 C74.83,19.79 74.48,19.76 74.09,19.70 C73.70,19.63 73.32,19.53 72.94,19.38 C72.56,19.24 72.20,19.04 71.86,18.79 C71.52,18.55 71.23,18.24 71.00,17.87 L70.95,17.87 L70.95,24.26 L68.84,24.26 L68.84,7.12 L70.95,7.12 L70.95,7.12 Z M78.53,11.52 C78.37,10.97 78.13,10.48 77.81,10.04 C77.49,9.61 77.07,9.27 76.57,9.01 C76.06,8.76 75.47,8.63 74.79,8.63 C74.08,8.63 73.48,8.76 72.98,9.04 C72.49,9.31 72.08,9.67 71.77,10.10 C71.46,10.55 71.23,11.05 71.09,11.60 C70.95,12.17 70.88,12.73 70.88,13.31 C70.88,13.92 70.95,14.51 71.10,15.07 C71.25,15.64 71.48,16.14 71.81,16.57 C72.13,17.01 72.55,17.35 73.06,17.62 C73.57,17.88 74.19,18.01 74.92,18.01 C75.65,18.01 76.25,17.88 76.74,17.61 C77.23,17.34 77.62,16.98 77.92,16.53 C78.22,16.08 78.43,15.57 78.56,14.99 C78.70,14.41 78.76,13.82 78.76,13.21 C78.76,12.64 78.68,12.07 78.53,11.52 L78.53,11.52 Z" id="Fill-5"></path><path d="M83.17,10.78 C83.44,9.98 83.84,9.30 84.36,8.71 C84.89,8.13 85.55,7.67 86.33,7.33 C87.10,7.00 87.99,6.83 89.00,6.83 C90.03,6.83 90.92,7.00 91.69,7.33 C92.46,7.67 93.11,8.13 93.64,8.71 C94.17,9.30 94.56,9.98 94.83,10.78 C95.09,11.57 95.23,12.42 95.23,13.33 C95.23,14.25 95.09,15.09 94.83,15.88 C94.56,16.66 94.17,17.35 93.64,17.93 C93.11,18.52 92.46,18.97 91.69,19.30 C90.92,19.63 90.03,19.79 89.00,19.79 C87.99,19.79 87.10,19.63 86.33,19.30 C85.55,18.97 84.89,18.52 84.36,17.93 C83.84,17.35 83.44,16.66 83.17,15.88 C82.91,15.09 82.78,14.25 82.78,13.33 C82.78,12.42 82.91,11.57 83.17,10.78 L83.17,10.78 Z M85.32,15.34 C85.53,15.92 85.81,16.41 86.18,16.80 C86.54,17.19 86.96,17.49 87.45,17.70 C87.94,17.91 88.46,18.01 89.00,18.01 C89.55,18.01 90.06,17.91 90.55,17.70 C91.04,17.49 91.46,17.19 91.83,16.80 C92.19,16.41 92.48,15.92 92.68,15.34 C92.89,14.75 92.99,14.09 92.99,13.33 C92.99,12.58 92.89,11.91 92.68,11.33 C92.48,10.75 92.19,10.25 91.83,9.85 C91.46,9.45 91.04,9.15 90.55,8.94 C90.06,8.73 89.55,8.63 89.00,8.63 C88.46,8.63 87.94,8.73 87.45,8.94 C86.96,9.15 86.54,9.45 86.18,9.85 C85.81,10.25 85.53,10.75 85.32,11.33 C85.11,11.91 85.01,12.58 85.01,13.33 C85.01,14.09 85.11,14.75 85.32,15.34 L85.32,15.34 Z" id="Fill-6"></path><path d="M97.83,7.12 L99.94,7.12 L99.94,19.53 L97.83,19.53 L97.83,7.12 Z" id="Fill-7"></path><path d="M105.19,7.12 L105.19,9.08 L105.24,9.08 C106.12,7.58 107.51,6.83 109.41,6.83 C110.25,6.83 110.95,6.94 111.51,7.16 C112.08,7.39 112.53,7.70 112.88,8.10 C113.23,8.50 113.47,8.98 113.61,9.53 C113.75,10.08 113.82,10.69 113.82,11.36 L113.82,19.53 L111.71,19.53 L111.71,11.12 C111.71,10.36 111.48,9.75 111.02,9.30 C110.56,8.85 109.92,8.63 109.11,8.63 C108.46,8.63 107.91,8.72 107.43,8.92 C106.96,9.11 106.57,9.38 106.26,9.73 C105.94,10.08 105.71,10.50 105.55,10.97 C105.39,11.44 105.32,11.96 105.32,12.52 L105.32,19.53 L103.21,19.53 L103.21,7.12 L105.19,7.12" id="Fill-8"></path><path d="M122.47,7.12 L122.47,8.92 L119.92,8.92 L119.92,16.62 C119.92,16.86 119.94,17.05 119.98,17.20 C120.02,17.34 120.10,17.46 120.22,17.54 C120.33,17.62 120.49,17.67 120.70,17.69 C120.91,17.71 121.18,17.73 121.50,17.73 L122.47,17.73 L122.47,19.53 L120.86,19.53 C120.32,19.53 119.85,19.49 119.46,19.42 C119.07,19.35 118.76,19.22 118.52,19.02 C118.28,18.83 118.10,18.56 117.99,18.21 C117.87,17.86 117.81,17.39 117.81,16.81 L117.81,8.92 L115.63,8.92 L115.63,7.12 L117.81,7.12 L117.81,3.39 L119.92,3.39 L119.92,7.12 L122.47,7.12" id="Fill-9"></path><path d="M0.67,11.87 L2.62,13.76 L8.76,19.50 L11.41,16.94 C11.65,16.61 11.64,16.16 11.36,15.84 L8.94,13.72 L8.95,13.72 L6.34,11.19 C6.04,10.84 6.04,10.32 6.37,9.99 L13.38,3.21 L10.20,0.12 L0.68,9.31 C-0.05,10.02 -0.05,11.17 0.67,11.87" id="Fill-10"></path><path d="M21.60,15.15 L19.66,13.27 L13.51,7.53 L10.86,10.08 C10.62,10.42 10.64,10.87 10.91,11.19 L13.33,13.31 L13.33,13.31 L15.93,15.84 C16.24,16.19 16.23,16.70 15.91,17.04 L8.89,23.82 L12.08,26.91 L19.65,19.60 L21.60,17.71 C22.33,17.01 22.33,15.86 21.60,15.15" id="Fill-11"></path><path d="M44.55,4.58 C44.55,5.24 44.00,5.77 43.32,5.77 C42.64,5.77 42.09,5.24 42.09,4.58 C42.09,3.93 42.64,3.39 43.32,3.39 C44.00,3.39 44.55,3.93 44.55,4.58" id="Fill-12"></path><path d="M100.11,4.58 C100.11,5.24 99.56,5.77 98.88,5.77 C98.20,5.77 97.65,5.24 97.65,4.58 C97.65,3.93 98.20,3.39 98.88,3.39 C99.56,3.39 100.11,3.93 100.11,4.58" id="Fill-13"></path></g></svg></a><button type="button" data-toggle="main-nav" aria-label="Toggle navigation" aria-controls="main-nav" class="styledHeader__Hamburger-vt4ff6-9 bWwBOK"><span></span></button><ul id="main-nav" class="styledHeader__NavList-vt4ff6-4 kbsvjX"><li class="styledHeader__NavListItem-vt4ff6-5 jpQa-DU"><a data-text="Blog" class="styledHeader__NavLink-vt4ff6-6 kSaGil" href="https://www.sitepoint.com/blog/">Blog</a></li><li class="styledHeader__NavListItem-vt4ff6-5 jpQa-DU"><a data-text="Community" href="https://www.sitepoint.com/community/" class="styledHeader__NavLink-vt4ff6-6 kSaGil">Community</a></li><li class="styledHeader__NavListItem-vt4ff6-5 jpQa-DU"><a data-text="Jobs" href="https://www.sitepoint.com/jobs/" class="styledHeader__NavLink-vt4ff6-6 kSaGil">Jobs</a></li><li class="styledHeader__NavListItem-vt4ff6-5 jpQa-DU"><a data-text="Library" href="https://www.sitepoint.com/premium/library/" class="styledHeader__NavLink-vt4ff6-6 kSaGil">Library</a></li><li class="styledHeader__NavListItem-vt4ff6-5 jpQa-DU"><a data-text="Login" href="https://www.sitepoint.com/premium/sign-in/" class="styledHeader__NavLink-vt4ff6-6 kSaGil">Login</a></li></ul><a id="join-premium" href="https://www.sitepoint.com/premium/products/Z2lkOi8vbGVhcm5hYmxlL1Byb2R1Y3QvMzA3?ref_source=sitepoint&amp;ref_medium=topnav" target="_blank" color="pink" type="default" class="button__Button-tmcfcj-0 styledHeader__JoinPremium-vt4ff6-2 gXVqYV">Join Premium</a></div></nav></header><main id="main-content" class="layout__Wrapper-ii2kc2-0 gnSOWC"><div><article aria-label="Article title: Time Ago: How to Display Publish Dates as Time Since Posted" class="cG9zdDoxMjMwMzc="><section aria-label="Article header for Time Ago: How to Display Publish Dates as Time Since Posted" color="programming" class="styledHeader__StyledHeader-sc-1ei2vfl-0 gbqye"><div class="styledHeader__Wrapper-sc-1ei2vfl-1 cHUmue"><header class="styledHeader__Info-sc-1ei2vfl-2 LTMfA"><h1 class="styledHeader__Title-sc-1ei2vfl-4 jNIbMf">Time Ago: How to Display Publish Dates as Time Since Posted</h1><div class="styledHeader__Metabox-sc-1ei2vfl-3 ciGkhP"><div><p class="styledHeader__Meta-sc-1ei2vfl-5 dvfXdt">By&nbsp;<a href="https://www.sitepoint.com/author/ovalutis">Osvaldas Valutis</a></p><p class="styledHeader__Meta-sc-1ei2vfl-5 dvfXdt">Programming</p><time datetime="2016-01-20" class="styledHeader__Meta-sc-1ei2vfl-5 dvfXdt">January 20, 2016</time></div><div><p class="styledHeader__Meta-sc-1ei2vfl-5 dvfXdt">Share:</p><button aria-label="Share Sitepoint on facebook" data-network="facebook" class="styledSocialShare__StyledButton-sc-1slciz-0 knfKwu social-share-button"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square" class="svg-inline--fa fa-facebook-square fa-w-14 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg></button><button aria-label="Share Sitepoint on reddit" data-network="reddit" class="styledSocialShare__StyledButton-sc-1slciz-0 knfKwu social-share-button"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="reddit" class="svg-inline--fa fa-reddit fa-w-16 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"></path></svg></button><button aria-label="Share Sitepoint on twitter" data-network="twitter" class="styledSocialShare__StyledButton-sc-1slciz-0 knfKwu social-share-button"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter-square" class="svg-inline--fa fa-twitter-square fa-w-14 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"></path></svg></button><button aria-label="Share Sitepoint on email" data-network="email" class="styledSocialShare__StyledButton-sc-1slciz-0 knfKwu social-share-button"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg></button></div></div></header><div type="book" class="styledPromoteBox__StyledPromoteBox-sc-1lx5aae-0 WbpJY" id="article_header_dwcg21591931302438"><div id="ad_article_header_dwcg21591931302438" type="book" class="styledPromoteBox__AdContainer-sc-1lx5aae-1 hYjbxP"></div><div><div class="styledBook__StyledBook-sc-1f7vk4f-0 bohiqO"><h4 class="styledBook__Title-sc-1f7vk4f-4 gRAkBD">Free JavaScript Book!</h4><div><div class="styledBook__BookCoverContainer-sc-1f7vk4f-1 cjRZIh"><figure type="spine" class="styledBookCover__StyledBookCover-beflyc-0 hNYtzW"><div class="styledBookCover__Spine-beflyc-1 ePRdzX"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/4c7f6303-60e8-45dc-a95b-aae08a4f32a3.png" loading="lazy" class="styledBookCover__Img-beflyc-2 hjHque"></div></figure></div><div class="styledBook__PContainer-sc-1f7vk4f-2 jBmLww"><p font-weight="400" class="p__P-j9v9zk-0 gDhSTQ">Write powerful, clean and maintainable JavaScript.<br><br><s>RRP $11.95</s> </p></div></div><div class="styledBook__CTAContainer-sc-1f7vk4f-3 gBefjl"><a id="article_header-button" href="https://www.sitepoint.com/premium/books/javascript-best-practice?ref=sitepointpremium" color="pink" data-network="JavaScript: Best Practice" data-unit="article_header" type="default" class="button__Button-tmcfcj-0 dIuXpw">Get the book free!</a></div></div></div></div></div></section><div class="styledPost__StyledPost-sc-4qaqpu-0 letBtp"><section aria-label="Article content for Time Ago: How to Display Publish Dates as Time Since Posted" class="styledBody__StyledBody-kvy0sj-0 enxCuw">
+<p>It’s common to present dates on the Web in a format such as <strong>Published on September 12th, 2015</strong>, or <strong>09/12/2015, 09:41:23</strong> and <strong>2015-09-12</strong>. </p>
+<p>Each of these examples tells the full date and/or time of some kind of activity – be it a published article, or a reader comment, or perhaps an uploaded video.</p>
+<p>Date formats like this might seem perfectly reasonable. After all, they’re informative and human-readable! Well yes, but “human-readable” doesn’t necessary mean users will readily be able to understand how recently the activity has occurred. The Web is a fast-moving place, and giving your content a sense of freshness could be the key to engaging with your audience! So, let’s look at how we could improve on these common date formats.</p>
+
+<h2 id="trick">A Little Trick</h2>
+<p>Once again, let’s say you have stumbled on a post that was actually published just a couple of minutes ago, but the subheading of the post states this:</p>
+<blockquote>
+<p>Published on September 12th, 2016</p>
+</blockquote>
+<p>… or this:</p>
+<blockquote>
+<p>Published on 2016-09-12, 09:41:23</p>
+</blockquote>
+<p>The problem with these messages is that they don’t communicate the feeling that your website has just been updated or that you do that very often. So, surely it be more inviting – and much clearer – to present the time this way:</p>
+<blockquote>
+<p>Published 2 minutes ago</p>
+</blockquote>
+<p>Seen this many times before? But how many of you have built this into your projects? Take Facebook for example: what would it look like if they presented the dates for the latest content as in my first example? Compare the left and right columns in the following image:</p>
+<p><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/1453295739better-way-to-present-time-on-web-1.gif" alt="timestamp formats compared" width="760" height="380" class="aligncenter size-full wp-image-123040"></p>
+<p>The left column’s dates aren’t that attractive, are they? I’ll wager the right hand examples are more appealing to you. Knowing that the content is fresh is very important – especially on the social networks, where people are more likely to ignore content that’s old or not clearly timestamped.</p>
+<h2 id="better">Printing Better Dates</h2>
+<p>In order to present <em>better dates</em>, you’ll need some server-side scripting, and I’ll use PHP for this demo. I created a tiny function called <code>time_ago()</code>, as shown here:</p>
+<pre class="  language-php" tabindex="0"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_NOW</span><span class="token punctuation">,</span>         <span class="token single-quoted-string string">'now'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_MINUTE</span><span class="token punctuation">,</span>      <span class="token single-quoted-string string">'{num} minute ago'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_MINUTES</span><span class="token punctuation">,</span>     <span class="token single-quoted-string string">'{num} minutes ago'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_HOUR</span><span class="token punctuation">,</span>        <span class="token single-quoted-string string">'{num} hour ago'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_HOURS</span><span class="token punctuation">,</span>       <span class="token single-quoted-string string">'{num} hours ago'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_YESTERDAY</span><span class="token punctuation">,</span>   <span class="token single-quoted-string string">'yesterday'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_FORMAT</span><span class="token punctuation">,</span>      <span class="token single-quoted-string string">'%e %b'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">define</span><span class="token punctuation">(</span> <span class="token constant">TIMEBEFORE_FORMAT_YEAR</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'%e %b, %Y'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">time_ago</span><span class="token punctuation">(</span> <span class="token variable">$time</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$out</span>    <span class="token operator">=</span> <span class="token single-quoted-string string">''</span><span class="token punctuation">;</span> <span class="token comment">// what we will print out</span>
+        <span class="token variable">$now</span>    <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// current time</span>
+        <span class="token variable">$diff</span>   <span class="token operator">=</span> <span class="token variable">$now</span> <span class="token operator">-</span> <span class="token variable">$time</span><span class="token punctuation">;</span> <span class="token comment">// difference between the current and the provided dates</span>
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token variable">$diff</span> <span class="token operator">&lt;</span> <span class="token number">60</span> <span class="token punctuation">)</span> <span class="token comment">// it happened now</span>
+            <span class="token keyword">return</span> <span class="token constant">TIMEBEFORE_NOW</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">elseif</span><span class="token punctuation">(</span> <span class="token variable">$diff</span> <span class="token operator">&lt;</span> <span class="token number">3600</span> <span class="token punctuation">)</span> <span class="token comment">// it happened X minutes ago</span>
+            <span class="token keyword">return</span> <span class="token function">str_replace</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'{num}'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token variable">$out</span> <span class="token operator">=</span> <span class="token function">round</span><span class="token punctuation">(</span> <span class="token variable">$diff</span> <span class="token operator">/</span> <span class="token number">60</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$out</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">?</span> <span class="token constant">TIMEBEFORE_MINUTE</span> <span class="token punctuation">:</span> <span class="token constant">TIMEBEFORE_MINUTES</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">elseif</span><span class="token punctuation">(</span> <span class="token variable">$diff</span> <span class="token operator">&lt;</span> <span class="token number">3600</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token punctuation">)</span> <span class="token comment">// it happened X hours ago</span>
+            <span class="token keyword">return</span> <span class="token function">str_replace</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'{num}'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span> <span class="token variable">$out</span> <span class="token operator">=</span> <span class="token function">round</span><span class="token punctuation">(</span> <span class="token variable">$diff</span> <span class="token operator">/</span> <span class="token number">3600</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$out</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">?</span> <span class="token constant">TIMEBEFORE_HOUR</span> <span class="token punctuation">:</span> <span class="token constant">TIMEBEFORE_HOURS</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">elseif</span><span class="token punctuation">(</span> <span class="token variable">$diff</span> <span class="token operator">&lt;</span> <span class="token number">3600</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token punctuation">)</span> <span class="token comment">// it happened yesterday</span>
+            <span class="token keyword">return</span> <span class="token constant">TIMEBEFORE_YESTERDAY</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">else</span> <span class="token comment">// falling back on a usual date format as it happened later than yesterday</span>
+            <span class="token keyword">return</span> <span class="token function">strftime</span><span class="token punctuation">(</span> <span class="token function">date</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'Y'</span><span class="token punctuation">,</span> <span class="token variable">$time</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">date</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'Y'</span> <span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token constant">TIMEBEFORE_FORMAT</span> <span class="token punctuation">:</span> <span class="token constant">TIMEBEFORE_FORMAT_YEAR</span><span class="token punctuation">,</span> <span class="token variable">$time</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token delimiter important">?&gt;</span></span></code></pre>
+<p>Let’s look at some details of this code.</p><div class="proper-ad-unit">
+          <div id="proper-ad-sitepoint_content_1">
+            <script>
+              window.propertag.cmd.push(function() {
+                proper_display('sitepoint_content_1');
+              });
+            </script></div>
+        </div><p></p>
+<ul><li>The only argument you must provide is <code>$time</code>, and it’s a date in <strong>Unix Timestamp</strong> – such as <code>time_ago( 1442082961 )</code>.</li>
+<li>Examples of what the function will return in respect of the <code>$time</code> passed:
+<ul><li><em>now</em> – if it happened less than 60 seconds ago (<code>TIMEBEFORE_NOW</code>)</li>
+<li>3 minutes ago – if less than 60 minutes ago (<code>TIMEBEFORE_MINUTE(S)</code>)</li>
+<li>8 hours ago – if less than 24 hours ago (<code>TIMEBEFORE_HOUR(S)</code>)</li>
+<li>yesterday – if less than 48 hours ago (<code>TIMEBEFORE_YESTERDAY</code>)</li>
+<li>12 Sep – if more than 48 hours and happened this year (<code>TIMEBEFORE_FORMAT</code>)</li>
+<li>12 Sep, 2015 – if happened not this year (<code>TIMEBEFORE_FORMAT_YEAR</code>).</li>
+</ul></li>
+<li>The PHP definitions are for separating the config-like data from the function code (it would be a good practice to put all of the <code>define()</code> occurrences into a config file and the function in helpers file).</li>
+<li><code>{num}</code> in definitions are replaced with actual numbers (minutes or hours).</li>
+<li>I use <code>strftime()</code> instead of <code>date()</code> to avoid language/locale <a href="http://stackoverflow.com/questions/5941121/php-strftime-date-or-datetime-which-is-better/5941268#5941268">issues</a>.</li>
+</ul><p>So, for example, if you want to get this onto your WordPress site, you’d simply write this:</p>
+<pre class="  language-php" tabindex="0"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?=</span><span class="token function">time_ago</span><span class="token punctuation">(</span> <span class="token function">get_the_time</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'U'</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token delimiter important">?&gt;</span></span></code></pre>
+<p>Or if it was some other hypothetical CMS:</p>
+<pre class="  language-none" tabindex="0"><code class="language-  language-none">&lt;?=time_ago( $post-&gt;date_created )?&gt;</code></pre>
+<p>Or the static way:</p>
+<pre class="  language-none" tabindex="0"><code class="language-  language-none">&lt;?=time_ago( 1447571705 )?&gt;</code></pre>
+<h2 id="access">Accessibility &amp; Usability</h2>
+<p>There’s a specific HTML element that you should use for presenting dates: <code>&lt;time&gt;</code>. In our case, when using the <code>time_ago</code> function, the value of the time element is not always in a valid date format (like <em>yesterday</em> or <em>3 minutes ago</em>). Therefore, you should also provide a fallback value by using <code>[datetime]</code> attribute:</p>
+<pre class="  language-none" tabindex="0"><code class="language-  language-none">Published &lt;time 
+    datetime="&lt;?=date( 'Y-m-d', $time )?&gt;" 
+    title="&lt;?=strftime( date( 'Y', $time ) == 
+        date( 'Y' ) ? TIMEBEFORE_FORMAT : TIMEBEFORE_FORMAT_YEAR, $time )?&gt;"&gt;
+    &lt;?=time_ago( $time )?&gt;
+    &lt;/time&gt;</code></pre>
+<p>This would result in better accessibility, for example:</p>
+<pre class="  language-none" tabindex="0"><code class="language-  language-none">Published &lt;time datetime="2015-09-12" title="September 12"&gt;3 minutes ago&lt;/time&gt;</code></pre>
+<p>Did you spot the <code>[title]</code> attribute? It’s a tiny usability improvement: putting the cursor over date text shows a message presented in the title attribute. That’s for the users who, for some reason, were looking for the “real” dates. Here’s a little CSS trick to beef up the feeling that there is something more:</p>
+<pre class="  language-css" tabindex="0"><code class="  language-css"><span class="token selector">time[title]</span>
+<span class="token punctuation">{</span>
+    <span class="token property">cursor</span><span class="token punctuation">:</span> help<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/1453295818better-way-to-present-time-on-web-2.gif" alt="CSS help cursor" width="760" height="170" class="aligncenter size-full wp-image-123041"></p>
+<h2 id="js">JavaScript Enhancement</h2>
+<div class="inline-roller"><div class="styledRollerDoor__StyledRollerDoor-sc-16spu5e-1 jpqESm" style="height: 0px;"><div class="styledRollerDoor__Content-sc-16spu5e-0 fznjz"><div type="book_form" class="styledPromoteBox__StyledPromoteBox-sc-1lx5aae-0 gOWFaY" id="article_rollerdoor_o5kqg1591931302962"><div class="styledBookForm__StyledBookForm-sc-12b2f31-0 gWwHuS"><div class="styledBookForm__BookCoverContainer-sc-12b2f31-1 wmNXB"><figure type="default" class="styledBookCover__StyledBookCover-beflyc-0 dRQRgl"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/34dcc72f-800f-4332-ab0c-31f0c4c4aad7.png" loading="lazy" class="styledBookCover__Img-beflyc-2 hjHque"></figure></div><div class="styledBookForm__FormContainer-sc-12b2f31-2 kyRVuf"><h3>Learn PHP for free!</h3><p font-weight="400" class="p__P-j9v9zk-0 gDhSTQ">Make the leap into server-side programming with a comprehensive cover of PHP &amp; MySQL.<br><br>Normally <s>RRP $11.95</s> <strong>Yours absolutely free</strong></p><form name="rollerdoor-book-form" id="rollerdoor-book-form" action="https://www.sitepoint.com/premium/register-user"><input type="text" name="name" placeholder="Name" required=""><input type="email" name="email" placeholder="Email" required=""><input type="hidden" name="campaign" value="php-mysql-novice-to-ninja-6th-edition"><button type="submit" id="article_rollerdoor-button" color="pink" data-network="PHP &amp; MySQL: Novice to Ninja, 6th Edition" data-unit="article_rollerdoor" class="button__Button-tmcfcj-0 jUvCR">Get the book free</button></form></div></div></div></div></div></div><p>There’s one more thing we can do! Have you noticed that Facebook also increments the dates in real time? Just watch at <strong>3 mins</strong> for a minute and it will turn into <strong>4 mins</strong> and so on. So, there are types of websites were this works out as a really nice enhancement. It wouldn’t be useful on an article post like this, but It’s perfect on a site like <a href="http://readerrr.com/">Readerrr</a>:</p>
+<pre class="  language-javascript" tabindex="0"><code class="  language-javascript"><span class="token operator">&lt;</span>time data<span class="token operator">-</span>time<span class="token operator">=</span><span class="token string">"&lt;?=$time?&gt;"</span> <span class="token spread operator">...</span></code></pre>
+<p>Finally, we need to convert the PHP code into a JavaScript equivalent. I’ve done this for you in vanilla JS (though a jQuery version is available as well). The script walks through each <code>time[data-time]</code> element once every minute (<code>setTimeout( updateDates, 1000 * 60 )</code>) and updates the values:</p>
+<pre class="  language-javascript" tabindex="0"><code class="  language-javascript"><span class="token comment">// ...</span>
+<span class="token keyword">var</span> elements    <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelectorAll</span><span class="token punctuation">(</span> <span class="token string">'time[data-time]'</span> <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">updateDates</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Array</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">.</span><span class="token method function property-access">forEach</span><span class="token punctuation">.</span><span class="token method function property-access">call</span><span class="token punctuation">(</span> elements<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">entry</span> <span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> out <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+            <span class="token comment">// ...</span>
+            entry<span class="token punctuation">.</span><span class="token property-access">textContent</span> <span class="token operator">=</span> out<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span> updateDates<span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span> updateDates<span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ...</span></code></pre>
+<p><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/1453295863better-way-to-present-time-on-web-3.gif" alt="A JavaScript demo" width="760" height="170" class="aligncenter size-full wp-image-123042"></p>
+<h3 id="demo">Online Demo and Code Download</h3>
+<p>You can check out an <a href="http://osvaldas.info/examples/counting-ago-time/">online demo</a> of the above code or <a href="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/01/1453295930ago-time.zip">download</a> the full demo code.</p>
+<h2 id="more">One more thing</h2>
+<p>In the examples above, the full date is presented if the activity has occurred three or more days ago. But it’s quite easy to extend the script for presenting the time in the ways like <strong>5 days ago</strong>, <strong>2 weeks ago</strong> and <strong>1 month ago</strong>, and so on:</p>
+<pre class="  language-none" tabindex="0"><code class="language-  language-none">// ...
+
+define( TIMEBEFORE_DAYS,    '{num} days ago' );
+define( TIMEBEFORE_WEEK,    '{num} week ago' );
+define( TIMEBEFORE_WEEKS,   '{num} weeks ago' );
+define( TIMEBEFORE_MONTH,   '{num} month ago' );
+define( TIMEBEFORE_MONTHS,  '{num} months ago' );
+
+function time_before( $time )
+{
+    // ...
+
+    elseif( $diff &lt; 3600 * 24 * 7 )
+        return str_replace( '{num}', round( $diff / ( 3600 * 24 ) ), TIMEBEFORE_DAYS );
+
+    elseif( $diff &lt; 3600 * 24 * 7 * 4 )
+        return str_replace( '{num}', ( $out = round( $diff / ( 3600 * 24 * 7 ) ) ), $out == 1 ? TIMEBEFORE_WEEK : TIMEBEFORE_WEEKS );
+
+    elseif( $diff &lt; 3600 * 24 * 7 * 4 * 12 )
+        return str_replace( '{num}', ( $out = round( $diff / ( 3600 * 24 * 7 * 4 ) ) ), $out == 1 ? TIMEBEFORE_MONTH : TIMEBEFORE_MONTHS );
+
+    else
+        // ...
+}</code></pre>
+<h2 id="wrap">Wrap Up</h2>
+<p>User experience and satisfaction is in details. Sometimes a simple detail – such as a dynamic date format – is enough to make our websites a little bit better.</p>
+<p>So, what do you think of this solution? Would you consider using it on your next project? Do you have any questions about it? Please let me know in the comments.</p>
+<p>By the way, I hope somebody can tell Instagram people that <strong>122w</strong> isn’t cool, and that <strong>2.4yrs</strong> would be much easier to understand. That would be better, wouldn’t it?</p>
+</section><div aria-label="Article sidebar" class="styledSidebar__StyledSidebar-dk1f5i-0 gUPsYy"><div class="styledSidebar__Authors-dk1f5i-1 flVAfR"><div class="styledSidebar__Author-dk1f5i-2 gUssep"><div class="styledSidebar__AuthorMeta-dk1f5i-3 bUmtIR dXNlcjo3MjIwMA=="><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/1453295188osvaldasv-96x96.jpg" alt="Osvaldas Valutis" loading="lazy" class="styledSidebar__AuthorAvatar-dk1f5i-4 bStwAa"><div><h3 class="styledSidebar__AuthorName-dk1f5i-5 jDFjfW"><a href="https://www.sitepoint.com/author/ovalutis">Osvaldas Valutis</a></h3><a href="http://dribbble.com/osvaldas" rel="noreferrer noopener" target="_blank" aria-label="Osvaldas Valutis&#39;s dribbble account" class="styledSidebar__AuthorContact-dk1f5i-6 gbhdoX"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="dribbble-square" class="svg-inline--fa fa-dribbble-square fa-w-14 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M90.2 228.2c8.9-42.4 37.4-77.7 75.7-95.7 3.6 4.9 28 38.8 50.7 79-64 17-120.3 16.8-126.4 16.7zM314.6 154c-33.6-29.8-79.3-41.1-122.6-30.6 3.8 5.1 28.6 38.9 51 80 48.6-18.3 69.1-45.9 71.6-49.4zM140.1 364c40.5 31.6 93.3 36.7 137.3 18-2-12-10-53.8-29.2-103.6-55.1 18.8-93.8 56.4-108.1 85.6zm98.8-108.2c-3.4-7.8-7.2-15.5-11.1-23.2C159.6 253 93.4 252.2 87.4 252c0 1.4-.1 2.8-.1 4.2 0 35.1 13.3 67.1 35.1 91.4 22.2-37.9 67.1-77.9 116.5-91.8zm34.9 16.3c17.9 49.1 25.1 89.1 26.5 97.4 30.7-20.7 52.5-53.6 58.6-91.6-4.6-1.5-42.3-12.7-85.1-5.8zm-20.3-48.4c4.8 9.8 8.3 17.8 12 26.8 45.5-5.7 90.7 3.4 95.2 4.4-.3-32.3-11.8-61.9-30.9-85.1-2.9 3.9-25.8 33.2-76.3 53.9zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-64 176c0-88.2-71.8-160-160-160S64 167.8 64 256s71.8 160 160 160 160-71.8 160-160z"></path></svg></a><a href="https://github.com/osvaldasvalutis" rel="noreferrer noopener" target="_blank" aria-label="Osvaldas Valutis&#39;s github account" class="styledSidebar__AuthorContact-dk1f5i-6 gbhdoX"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github-square" class="svg-inline--fa fa-github-square fa-w-14 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3 0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1 0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6-14.1 0-28.4 1.9-41.6 5.6 0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7 0 13.9.2 36.5.2 40.6 0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3 0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4 0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6 0-3.7-1.5s-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3 0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"></path></svg></a><a href="https://twitter.com/osvaldas" rel="noreferrer noopener" target="_blank" aria-label="Osvaldas Valutis&#39;s twitter account" class="styledSidebar__AuthorContact-dk1f5i-6 gbhdoX"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter-square" class="svg-inline--fa fa-twitter-square fa-w-14 fa-lg share-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"></path></svg></a></div></div><p class="styledSidebar__AuthorDescription-dk1f5i-7 drpYYF">Osvaldas is a web designer who thinks in code and is a creator of <a href="http://readerrr.com/">Readerrr</a>. He also writes about website design on development on his <a href="http://osvaldas.info/blog">blog</a>. Osvaldas is based in Klaipeda, Lithuania.</p></div></div><div type="books_new" class="styledPromoteBox__StyledPromoteBox-sc-1lx5aae-0 iYjbBU" id="article_sidebar_56kgl1591931302438"><div id="ad_article_sidebar_56kgl1591931302438" type="books_new" class="styledPromoteBox__AdContainer-sc-1lx5aae-1 ctLsIY"></div><div><div class="styledBooksNew__StyledBooksNew-sc-1wtbcbh-0 bMoqNr"><h4> New books out now!</h4><div class="styledBook__StyledBook-sc-1f7vk4f-0 VKBmw"><div><div class="styledBook__BookCoverContainer-sc-1f7vk4f-1 cjRZIh"><figure type="spine" class="styledBookCover__StyledBookCover-beflyc-0 hNYtzW"><div class="styledBookCover__Spine-beflyc-1 ePRdzX"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/d64f92dc-5560-4a30-8ae0-07ebb475a4e1_medium.png" loading="lazy" class="styledBookCover__Img-beflyc-2 hjHque"></div></figure></div><div class="styledBook__PContainer-sc-1f7vk4f-2 jBmLww"><p font-weight="400" class="p__P-j9v9zk-0 gDhSTQ">Learn valuable skills with a practical introduction to Python programming!</p></div></div><div class="styledBook__CTAContainer-sc-1f7vk4f-3 gBefjl"><a id="article_sidebar1-button" href="https://www.sitepoint.com/premium/books/python-fundamentals/read" color="pink" data-network="Python Fundamentals" data-unit="article_sidebar1" type="default" class="button__Button-tmcfcj-0 dIuXpw">Read the book now</a></div></div><hr><div class="styledBook__StyledBook-sc-1f7vk4f-0 VKBmw"><div><div class="styledBook__BookCoverContainer-sc-1f7vk4f-1 cjRZIh"><figure type="spine" class="styledBookCover__StyledBookCover-beflyc-0 hNYtzW"><div class="styledBookCover__Spine-beflyc-1 ePRdzX"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/07bd682b-6f93-462b-a1fb-b5e5f77eb696_medium.png" loading="lazy" class="styledBookCover__Img-beflyc-2 hjHque"></div></figure></div><div class="styledBook__PContainer-sc-1f7vk4f-2 jBmLww"><p font-weight="400" class="p__P-j9v9zk-0 gDhSTQ">Give yourself more options and write higher quality CSS with CSS Optimization Basics.</p></div></div><div class="styledBook__CTAContainer-sc-1f7vk4f-3 gBefjl"><a id="article_sidebar2-button" href="https://www.sitepoint.com/premium/books/css-optimization-basics/read" color="pink" data-network="CSS Optimization Basics" data-unit="article_sidebar2" type="default" class="button__Button-tmcfcj-0 dIuXpw">Read the book now</a></div></div></div></div></div><div class="styledPopularBooks__StyledPopularBooks-sc-98zu2f-0 dCTqAQ"><h3 class="styledPopularBooks__StyledPopularBooksTitle-sc-98zu2f-1 jijLNq">Popular Books</h3><a href="https://www.sitepoint.com/premium/books/jump-start-git-2nd-edition/read" rel="noreferrer noopener" target="_blank" aria-label="Jump Start Git, 2nd Edition&#39;s page" id="article_popular1-link" data-network="Jump Start Git, 2nd Edition" data-unit="article_popular" class="styledPopularBooks__Book-sc-98zu2f-2 bVMLhN"><div class="styledPopularBooks__BookImgContainer-sc-98zu2f-3 dNTEUy cover-spine-overlay"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/79dfd065-842d-46cb-ae1b-bec2322bbd02_medium.png" alt="jump-start-git-2nd-edition" loading="lazy" class="styledPopularBooks__BookImg-sc-98zu2f-4 hFghmq"></div><p class="styledPopularBooks__BookTitle-sc-98zu2f-5 fefnBN">Jump Start Git, 2nd Edition</p></a><a href="https://www.sitepoint.com/premium/books/visual-studio-code-end-to-end-editing-and-debugging-tools-for-web-developers/read" rel="noreferrer noopener" target="_blank" aria-label="Visual Studio Code: End-to-End Editing and Debugging Tools for Web Developers&#39;s page" id="article_popular2-link" data-network="Visual Studio Code: End-to-End Editing and Debugging Tools for Web Developers" data-unit="article_popular" class="styledPopularBooks__Book-sc-98zu2f-2 bVMLhN"><div class="styledPopularBooks__BookImgContainer-sc-98zu2f-3 dNTEUy cover-spine-overlay"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/ca8e7cc0-370b-4af2-b973-97955befbeb7_medium.png" alt="visual-studio-code-end-to-end-editing-and-debugging-tools-for-web-developers" loading="lazy" class="styledPopularBooks__BookImg-sc-98zu2f-4 hFghmq"></div><p class="styledPopularBooks__BookTitle-sc-98zu2f-5 fefnBN">Visual Studio Code: End-to-End Editing and Debugging Tools for Web Developers</p></a><a href="https://www.sitepoint.com/premium/books/form-design-patterns/read" rel="noreferrer noopener" target="_blank" aria-label="Form Design Patterns&#39;s page" id="article_popular3-link" data-network="Form Design Patterns" data-unit="article_popular" class="styledPopularBooks__Book-sc-98zu2f-2 bVMLhN"><div class="styledPopularBooks__BookImgContainer-sc-98zu2f-3 dNTEUy cover-spine-overlay"><img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/788aa26e-18e5-409c-977e-d7a6f865e47e_medium.png" alt="form-design-patterns" loading="lazy" class="styledPopularBooks__BookImg-sc-98zu2f-4 hFghmq"></div><p class="styledPopularBooks__BookTitle-sc-98zu2f-5 fefnBN">Form Design Patterns</p></a></div><div type="no_fallback" class="styledPromoteBox__StyledPromoteBox-sc-1lx5aae-0 eEREJF" id="side_1_xecvbm1591931302439"><div id="ad_side_1_xecvbm1591931302439" type="no_fallback" class="styledPromoteBox__AdContainer-sc-1lx5aae-1 gUXnkl"></div><div></div></div><div type="no_fallback" class="styledPromoteBox__StyledPromoteBox-sc-1lx5aae-0 eEREJF" id="side_2_06zdu31591931302439"><div id="ad_side_2_06zdu31591931302439" type="no_fallback" class="styledPromoteBox__AdContainer-sc-1lx5aae-1 gUXnkl"></div><div></div></div><div id="side_3_newzej1591931302439" class="styledSticky__StyledSticky-x82kw-0 jZtjwB sticky"></div></div></div></article><div class="styledLoader__StyledLoader-sc-1siylp2-1 dPwlS"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="spinner" class="svg-inline--fa fa-spinner fa-w-16 fa-pulse fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"></path></svg></div></div></main><footer class="styledFooter__StyledFooter-sc-1xzv3gd-0 cRFzjC"><nav aria-label="Footer navigation"><div class="styledFooter__Container-sc-1xzv3gd-2 gkisFa"><div class="footer-links"><ul><li><h2>Stuff we do</h2></li><li><a href="https://www.sitepoint.com/premium">Premium</a></li><li><a href="https://www.sitepoint.com/community">Forums</a></li><li><a href="https://sitepoint.typeform.com/to/fNY7XG">Corporate memberships</a></li><li><a href="https://sitepoint.tapfiliate.com/">Become an affiliate</a></li><li><a href="https://www.sitepoint.com/jobs">Remote Jobs</a></li></ul><ul><li><h2>About</h2></li><li><a href="https://www.sitepoint.com/about-us">Our story</a></li></ul><ul><li><h2>Contact</h2></li><li><a href="https://www.sitepoint.com/contact-us">Contact us</a></li><li><a href="https://sitepoint.zendesk.com/hc/en-us">FAQ</a></li><li><a href="https://sitepoint.typeform.com/to/HtAXVN">Publish your book with us</a></li><li><a href="https://sitepoint.typeform.com/to/DMmYfn">Write an article for us</a></li><li><a href="https://www.sitepoint.com/advertise">Advertise</a></li></ul><ul><li><h2>Legals</h2></li><li><a href="https://www.sitepoint.com/legals">Terms of use</a></li><li><a href="https://www.sitepoint.com/privacy-policy">Privacy policy</a></li></ul></div><div class="styledFooter__Separator-sc-1xzv3gd-1 eXYzNg"></div><div class="footer-extra"><ul><li><h2>Connect</h2></li><li><a href="https://www.facebook.com/sitepoint" rel="noopener noreferrer" target="_blank" aria-label="See sitepoint facebook account"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square" class="svg-inline--fa fa-facebook-square fa-w-14 fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg></a><a href="http://twitter.com/sitepointdotcom" rel="noopener noreferrer" target="_blank" aria-label="See sitepoint twitter account"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter-square" class="svg-inline--fa fa-twitter-square fa-w-14 fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"></path></svg></a><a href="https://www.sitepoint.com/feed" rel="noopener noreferrer" target="_blank" aria-label="See sitepoint RSS feed"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss-square" class="svg-inline--fa fa-rss-square fa-w-14 fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634-5.214-80.05-69.243-143.92-149.123-149.123-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425 110.546 5.974 198.997 94.536 204.964 204.964.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432 167.83 6.025 302.21 141.191 308.205 308.205.232 6.449-4.978 11.787-11.432 11.787z"></path></svg></a></li></ul><div><p>© 2000 – <!-- -->2020<!-- --> SitePoint Pty. Ltd.</p><p class="recaptcha-branding">This site is protected by reCAPTCHA and the Google<a href="https://policies.google.com/privacy"> Privacy Policy </a>and<a href="https://policies.google.com/terms"> Terms of Service </a>apply.</p></div></div></div></nav></footer></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><iframe name="__cmpLocator" style="display: none;" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/saved_resource.html"></iframe><script type="text/javascript" defer="" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/api.js.download"></script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/counting-the-ago-time-how-to-keep-publish-dates-fresh/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-532a94bd20cb22242f40.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b7cab190eed483e56be4.js"],"component---src-pages-about-us-js":["/component---src-pages-about-us-js-2fe386ff092780f2c328.js"],"component---src-pages-advertise-js":["/component---src-pages-advertise-js-5dd0d4e6b2d0c9558e24.js"],"component---src-pages-contact-us-js":["/component---src-pages-contact-us-js-edcb20cb7a0eb174845a.js"],"component---src-pages-index-js":["/component---src-pages-index-js-6869b69d57a08b598580.js"],"component---src-pages-legals-js":["/component---src-pages-legals-js-f15058e17f5d6c871664.js"],"component---src-pages-privacy-policy-js":["/component---src-pages-privacy-policy-js-a73abde632bb8112d8f8.js"],"component---src-templates-author-index-js":["/component---src-templates-author-index-js-131edb93f076f8a09f52.js"],"component---src-templates-post-list-index-js":["/component---src-templates-post-list-index-js-b7acbf9e843a7eae489e.js"],"component---src-templates-post-post-js":["/component---src-templates-post-post-js-b671dd100a5d42351d71.js"]};/*]]>*/</script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/webpack-runtime-bd25856cde0959fc6148.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/ec1189df-0fa34f9c7c4814c5cf93.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/a9a7754c-af332f070836f35a283d.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/2f65259b2cfe4675599fed9cf756f67879aa3179-ff3970ca26df2d903e60.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/app-532a94bd20cb22242f40.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/component---src-templates-post-post-js-b671dd100a5d42351d71.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/framework-e70cdacaba893b4d7727.js.download" async=""></script><script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/f5827caf6186e5c689d2efec58e563be7dc9b201-bbb63ee514945e8d2aa4.js.download" async=""></script><link href="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/css(1)" rel="stylesheet">
+<style type="text/css">
+  #bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #333333;
+    width: 100%;
+    height: 160px;
+    padding: 10px 0;
+    transition: all 0.3s ease-out;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", Helvetica, Arial,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  #bottom-bar .free-book {
+    display: flex;
+    width: 100%;
+    height: 140px;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .free-book .book-form-cover {
+    position: relative;
+    display: none;
+    margin: 0 20px;
+    height: 164px;
+    transform: translatey(0rem) rotate(0deg);
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .free-book .book-form-cover::-webkit-scrollbar {
+    display: none;
+  }
+  #bottom-bar .free-book .book-form-cover img {
+    /* height: 164px;
+      width: auto; */
+  }
+  #bottom-bar .free-book .book-form-cover::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: 101%;
+    background-size: 104% auto;
+    border-bottom: 1px solid #554435;
+    border-radius: 0 0 4px 4px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 118 146' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='lgrad' x1='0%25' x2='0%25' y1='0%25' y2='20%25' %3E%3Cstop offset='20%25' style='stop-color:%23BF9773' /%3E%3Cstop offset='30%25' style='stop-color:%23C8A17E' /%3E%3Cstop offset='70%25' style='stop-color:%23C8A17E' /%3E%3Cstop offset='80%25' style='stop-color:%23BF9773' /%3E%3C/linearGradient%3E%3Cpattern id='stripe-pattern-horz' width='600' height='10' patternUnits='userSpaceOnUse' patternTransform='scale(0.3) rotate(90)'%3E%3Crect x='0' y='0' width='600' height='50' fill='url(%23lgrad)'/%3E%3C/pattern%3E%3Cfilter id='paper-shadow' x='-3' y='63' width='124' height='82' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='-4'/%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3CfeBlend in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3Cfilter id='string-shadow' x='0' y='0' width='100%25' height='100%25' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dx='.5' dy='1'/%3E%3CfeGaussianBlur stdDeviation='.5'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/%3E%3CfeBlend in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23paper-shadow)'%3E%3Cpath d='M1 143V71l11.7 2 5.8 4.5c.5-2.3 4.2-5.1 16 .5 14.6 7 34.4 24 49 25 11.8.8 27.3 1.3 33.5 1.5V143a2 2 0 01-2 2H3a2 2 0 01-2-2z' fill='url(%23stripe-pattern-horz)'/%3E%3C/g%3E%3Cpath d='M12.7 72L1 70l-1 3.5 7.5-1 11 5c.5-2.3 4-2.1 15.8 3.5 5 2.4 12.3 4.3 18.2 8 11 7 22 14.3 31.5 15 11.7.8 26.8.3 33 .5l.5-1c-6.2-.2-22.2-.7-34-1.5-9.5-.7-21.3-8.1-32.4-15.2-5.9-3.7-11.6-7.4-16.7-9.8-11.7-5.6-15.7-2.3-16.2 0l-5.5-5z' fill='%23F2D3B6' fill-opacity='.9'/%3E%3Cg class='string' filter='url(%23string-shadow)'%3E%3Cpath d='M21.5 0v145.5' stroke='%23F2EDDE' stroke-linecap='round'/%3E%3Cpath d='M12.5 123c4.7-1.3 6.7-3 8.5-8.5h2c0-1.5.6-4.8 3-6 3-1.5 5-1 6-3' stroke='%23F2EDDE' stroke-linecap='round'/%3E%3Cpath d='M1 114.7l21-.2c1.9 0-.1-5-1.3-2.7-1 2.3.5 3.6 1.5 3.9 2.5-1.6 8-3.9 10.3-3.9 3 0 9.4 3 8.5 4.9-1 2-18.5-3.2-19.5-3.2s.1.2-4.5 3.2c-6 3.9-10.2 4.5-10.8 2.9-.7-1.6 7-6.6 10.8-6.6 3.8 0 5.6 1.2 6.5 1.5l94 .2' stroke='%23F2EDDE' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  #bottom-bar .book-info {
+    padding: 0 8px;
+    width: 100%;
+    height: 140px;
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .book-info .book-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    height: 40px;
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .book-info .book-header .book-form-title {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 18px 0 0;
+    font-weight: 400;
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar .shrink-button {
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.3 3.7c.4-.4.4-.9 0-1.2L19.1.3a.8.8 0 00-1.2 0l-7.1 7-7.1-7a.8.8 0 00-1.2 0L.3 2.5c-.4.3-.4.8 0 1.2l9.9 9.9c.3.3.9.3 1.2 0l10-10z' fill='%23fff'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-color: transparent;
+    border: none;
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .book-info .book-form-description {
+    color: #fff;
+    font-size: 0.8rem;
+    margin: 0 0 12px;
+    font-weight: 300;
+    opacity: 1;
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .book-info .book-form {
+    display: flex;
+    opacity: 1;
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar .book-info .book-form input {
+    font-size: 11px;
+    height: 28px;
+    width: 100px;
+    border: none;
+    border-radius: 4px;
+    margin: 0 10px 0 0;
+  }
+  #bottom-bar .book-info .book-form button {
+    height: 28px;
+    margin: 0 18px;
+    font-size: 11px;
+    padding: 0 12px;
+    background: #10a59e;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+  }
+  #bottom-bar .hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s ease-out;
+  }
+  #bottom-bar .show {
+    opacity: 1;
+    visibility: visible;
+    transition: all 1s ease-out;
+  }
+  #bottom-bar .sp-recaptcha {
+    line-height: 1.5;
+    font-size: 9px;
+    margin: 12px 0 0;
+    color: #fff;
+  }
+  #bottom-bar .sp-recaptcha a {
+    color: #10a59e;
+  }
+  #bottom-bar.shrinked {
+    height: 40px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+  }
+  #bottom-bar.shrinked .free-book {
+    justify-content: flex-start;
+    align-items: center;
+    height: 45px;
+    transition: all 0.2s ease-in;
+  }
+  #bottom-bar.shrinked .shrink-button {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-out;
+  }
+  #bottom-bar.shrinked .free-book .book-form-cover {
+    transform: translatey(0.2rem) rotate(-5deg);
+    position: relative;
+    top: 63px;
+    margin: 0 15px;
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar.shrinked .book-info {
+    height: 30px;
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar.shrinked .book-info .book-header {
+    align-items: center;
+    justify-content: flex-start;
+    height: 30px;
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar.shrinked .book-info .book-header .book-form-title {
+    margin: 0 18px 0 0;
+    font-size: 16px;
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar.shrinked .book-info .book-form-description {
+    opacity: 0;
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar.shrinked .book-form {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+    transition: all 0.2s ease-out;
+  }
+  #bottom-bar.shrinked .sp-recaptcha {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+  @media (min-width: 624px) {
+    #bottom-bar {
+      height: 170px;
+      padding: 15px 0;
+    }
+    #bottom-bar .free-book {
+      height: 140px;
+    }
+    #bottom-bar .book-info {
+      height: 140px;
+      padding: 0 15px;
+    }
+    #bottom-bar .book-info .book-form input {
+      width: 250px;
+      margin: 0 20px 0 0;
+    }
+    #bottom-bar .book-info .book-form button {
+      font-size: 15px;
+      padding: 0px 22px;
+    }
+  }
+  @media (min-width: 936px) {
+    #bottom-bar {
+      height: 205px;
+      padding: 20px 0;
+    }
+    #bottom-bar .free-book {
+      height: 164px;
+      width: 740px;
+    }
+    #bottom-bar .free-book .book-form-cover {
+      display: flex;
+    }
+    #bottom-bar .book-info {
+      padding: 0 20px;
+      height: 164px;
+    }
+    #bottom-bar .book-info .book-header {
+      height: 50px;
+    }
+    #bottom-bar .book-info .book-header .book-form-title {
+      font-size: 31px;
+    }
+    #bottom-bar .book-info .book-form-description {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+    #bottom-bar .shrink-button {
+      height: 22px;
+      width: 22px;
+    }
+    #bottom-bar .book-info .book-form input {
+      font-size: 20px;
+      height: 36px;
+      width: 180px;
+      margin: 0 10px 0 0;
+    }
+    #bottom-bar .book-info .book-form button {
+      margin: 0 20px;
+      padding: 0 18px;
+      font-size: 20px;
+      height: 36px;
+    }
+    #bottom-bar .sp-recaptcha {
+      margin: 14px 0 0;
+      font-size: 11px;
+    }
+  }
+</style>
+<div id="bottom-bar" data-gtm-vis-recent-on-screen-9559795_502="100" data-gtm-vis-first-on-screen-9559795_502="100" data-gtm-vis-total-visible-time-9559795_502="100" data-gtm-vis-has-fired-9559795_502="1">
+  <div class="free-book">
+    <div class="book-form-cover">
+      <img src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/1590639963jsbp.png">
+    </div>
+    <div class="book-info">
+      <div class="book-header">
+        <h4 class="book-form-title">FREE JavaScript Book</h4>
+        <button class="shrink-button" aria-expanded="true"></button>
+      </div>
+      <p class="book-form-description">Valued at $11.95 on Amazon. Yours free!</p>
+      <form name="book-form" id="book-form" class="book-form" action="https://www.sitepoint.com/premium/register-user">
+        <input type="hidden" name="campaign" value="js-best-practice-reader">
+        <input type="text" name="name" placeholder="Name" required="">
+        <input type="email" name="email" placeholder="your@email.com" required="">
+        <button type="submit">
+          Submit
+        </button>
+      </form>
+      <div class="sp-recaptcha show">
+        This site is protected by reCAPTCHA and the Google
+        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a href="https://policies.google.com/terms">Terms of Service</a>
+        apply.
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" id="">var BottomBar=document.querySelector("#bottom-bar"),ShrinkButton=document.querySelector("#bottom-bar .shrink-button"),BookDescription=document.querySelector("#bottom-bar .book-form-description"),BookForm=document.querySelector("#bottom-bar .book-form"),BookFormInputs=BookForm.getElementsByTagName("input"),BookFormSubmit=document.querySelector("#bottom-bar .book-form button"),RecaptchaLinks=document.querySelectorAll(".sp-recaptcha a"),Meta={heading:"FREE JavaScript Book",bookSlug:"js-best-practice-reader",
+bookCover:"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2020/05/1590639963jsbp.png",bookInfo:"Valued at $11.95 on Amazon. Yours free!"};
+function grecaptchaSubmitHandler(a){a.preventDefault();var b=this;"undefined"!=typeof grecaptcha?grecaptcha.execute("6LfEw7cUAAAAABIV8YABIbOzqBJ3zr4BpjVbDXDK",{action:"free_book_bottomBar"}).then(function(a){inputToken=document.createElement("input");inputToken.setAttribute("name","recaptcha_token");inputToken.setAttribute("value",a);inputToken.setAttribute("type","hidden");b.appendChild(inputToken);b.submit()}):b.submit()}
+function checkRecaptcha(){"undefined"!=typeof grecaptcha&&(document.querySelector(".sp-recaptcha").classList.remove("hidden"),document.querySelector(".sp-recaptcha").classList.add("show"),document.querySelector(".book-form").addEventListener("submit",grecaptchaSubmitHandler))}
+function toggleBottomBar(){BottomBar.classList.toggle("shrinked");if(BottomBar.classList.contains("shrinked")){ShrinkButton.setAttribute("aria-expanded","false");BookDescription.setAttribute("aria-hidden","true");BookForm.setAttribute("aria-hidden","true");BookFormSubmit.setAttribute("disabled","");for(var a=0;a<BookFormInputs.length;a++)BookFormInputs[a].setAttribute("disabled","");a=0;for(var b=RecaptchaLinks.length;a<b;a++)RecaptchaLinks[a].setAttribute("tabindex","-1")}else{ShrinkButton.setAttribute("aria-expanded",
+"true");BookDescription.setAttribute("aria-hidden","false");BookForm.setAttribute("aria-hidden","false");BookFormSubmit.removeAttribute("disabled","");for(a=0;a<BookFormInputs.length;a++)BookFormInputs[a].removeAttribute("disabled");a=0;for(b=RecaptchaLinks.length;a<b;a++)RecaptchaLinks[a].removeAttribute("tabindex")}}
+(function(){document.forms["book-form"].campaign.value=Meta.bookSlug;document.querySelector("#bottom-bar .book-form-cover img").src=Meta.bookCover;document.querySelector("#bottom-bar .book-form-title").innerHTML=Meta.heading;document.querySelector("#bottom-bar .book-form-description").innerHTML=Meta.bookInfo;checkRecaptcha();ShrinkButton.addEventListener("click",toggleBottomBar);document.addEventListener("keydown",function(a){"Escape"===a.key&&(BottomBar.classList.contains("shrinked")||toggleBottomBar())})})();</script>
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/anchor.html" width="256" height="60" role="presentation" name="a-afsgbsfh4z1m" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/saved_resource(1).html"></iframe></div>
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1991563104285178");fbq("set","agent","tmgoogletagmanager","1991563104285178");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1991563104285178&amp;ev=PageView&amp;noscript=1"></noscript>
+<script src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/adsct" type="text/javascript"></script><iframe name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame" id="_hjRemoteVarsFrame" src="./Time Ago_ How to Display Publish Dates as Time Since Posted — SitePoint_files/box-469cf41adb11dc78be68c1ae7f9457a4.html" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe></body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://paulund.co.uk/display-the-post-date-in-wordpress -->
+<html lang="en" class="bg-white antialiased wf-montserrat-n4-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta id="token" value="BxslfETE1ALV8kfQcEIAmh1oLFM5ZTrpX5lDcrGi">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="canonical" content="https://paulund.co.uk/display-the-post-date-in-wordpress">
+    <meta name="author" content="Paulund">
+    <link rel="stylesheet" href="./Display The Post Date In Wordpress - Paulund_files/app.css">
+    <meta name="csrf-token" content="BxslfETE1ALV8kfQcEIAmh1oLFM5ZTrpX5lDcrGi">
+    <title>Display The Post Date In Wordpress - Paulund</title>
+
+        <link rel="stylesheet" href="./Display The Post Date In Wordpress - Paulund_files/prism.css"><link rel="stylesheet" href="./Display The Post Date In Wordpress - Paulund_files/css" media="all">
+<script id="_carbonads_projs" type="text/javascript" src="./Display The Post Date In Wordpress - Paulund_files/CKYIE2QJ.json"></script></head>
+<body class="font-source-sans font-normal text-black leading-normal">
+
+<div id="app">
+    <header class="flex h-32 items-center bg-white">
+    <div class="w-full container-md mx-auto px-6">
+        <div class="flex justify-between flex-col md:flex-row">
+            <div class="w-full md:w-1/5 text-center md:text-left">
+                <a href="https://paulund.co.uk/"><h1>Paulund</h1></a>
+            </div>
+
+            <div class="flex justify-center items-center w-full md:w-1/4">
+                <a class="mx-4" href="https://paulund.co.uk/subjects">Subjects</a>
+                <a class="mx-4" href="https://paulund.co.uk/tools/all">Tools</a>
+                <a class="mx-4" href="https://paulund.co.uk/contact">Contact</a>
+            </div>
+
+            
+        </div>
+    </div>
+</header>
+    <div class="w-full container-md mx-auto px-6">
+            <div class="flex items-center text-center pt-10 pb-4 mb-4">
+        <section class="w-full">
+            <time class="publish-date" datetime="%1$s">8th May 2012</time>
+                                        in <a href="https://paulund.co.uk/subject/wordpress">WordPress</a>
+            
+            <h1 class="mt-4 mb-0 text-5xl">Display The Post Date In Wordpress</h1>
+        </section>
+    </div>
+
+                        <script src="./Display The Post Date In Wordpress - Paulund_files/webfont.js.download" type="text/javascript" async=""></script><script async="" type="text/javascript" src="./Display The Post Date In Wordpress - Paulund_files/carbon.js.download" id="_carbonads_js"></script><div id="carbonads"><span><span class="carbon-wrap"><a href="https://srv.carbonads.net/ads/click/x/GTND42Q7C6AIT27LF6YLYKQMF67DT237FT7DKZ3JCWAI6K3WCABD62JKC6BILKQ7CKYDEK3EHJNCLSIZ?segment=placement:paulundcouk;" class="carbon-img" target="_blank" rel="noopener sponsored"><img src="./Display The Post Date In Wordpress - Paulund_files/1551199029-Adobe_Stock_260x200-2.jpg" alt="ads via Carbon" border="0" style="max-width: 130px;"></a><a href="https://srv.carbonads.net/ads/click/x/GTND42Q7C6AIT27LF6YLYKQMF67DT237FT7DKZ3JCWAI6K3WCABD62JKC6BILKQ7CKYDEK3EHJNCLSIZ?segment=placement:paulundcouk;" class="carbon-text" target="_blank" rel="noopener sponsored">Limited time offer: Get 10 free Adobe Stock images.</a></span><a href="http://carbonads.net/?utm_source=paulundcouk&amp;utm_medium=ad_via_link&amp;utm_campaign=in_unit&amp;utm_term=carbon" class="carbon-poweredby" target="_blank" rel="noopener sponsored">ads via Carbon</a></span></div>
+                <div class="mb-8">
+        <p>If you are building a <a href="http://www.paulund.co.uk/what-makes-a-premium-wordpress-theme-premium" title="What Makes A Premium WordPress Theme Premium?">Wordpress theme</a> then there will a time when you want to display the date for the current post, luckily for you this is very easy with a Wordpress <a href="http://codex.wordpress.org/Function_Reference/the_date" title="the date">function the_date()</a>. The the_date function will return the date of the post or the set of posts if published on the same date. This function has the option of passing in 4 parameters.</p>
+<ul>
+<li>The format.</li>
+<li>HTML to place before the date</li>
+<li>HTML to place after the date</li>
+<li>Boolean if to echo the date or not.</li>
+</ul>
+<pre><code>
+&lt;?php the_date( $format, $before, $after, $echo ); ?&gt; 
+</code></pre>
+<h2>Get The Date Function</h2>
+<p><img src="http://www.paulund.co.uk/uploads/2011/06/1310397962_plan.png" alt="Calendar" title="calendar"> If you are using the Wordpress loop to display your posts then you should be using the <a href="http://codex.wordpress.org/Template_Tags/get_the_date" title="Get the date">get_the_date() function</a>. The difference is get_the_date() will always return the date of the current post. This doesn't have any parameters so using it is very simple.   </p>
+<pre><code>
+&lt;span class="entry-date"&gt;&lt;?php echo get_the_date(); ?&gt;&lt;/span&gt;
+</code></pre>
+<h2>Human Readable Difference Date</h2>
+<p>If you want to display the date like Twitter does so 2 days ago, 1 day ago, Wordpress has a function where you can display the difference of 2 dates. By using the <a href="http://codex.wordpress.org/Function_Reference/human_time_diff" title="Human time difference">human_time_diff() function</a>.   </p>
+<pre><code>
+&lt;?php human_time_diff( $from, $to ); ?&gt;
+</code></pre>
+<p>If you don't supply it with a to date it will default to now. To display 2 days ago use the following snippet.   </p>
+<pre><code>
+&lt;?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?&gt;
+</code></pre>
+    </div>
+        
+            
+
+            <section class="w-full my-4 p-4 bg-grey-lightest text-grey-darkest text-center border-t-8">
+    <div class="w-full container relative mx-auto px-6 flex-col">
+        <h2 class="my-4">Subscribe To The Weekly Newsletter</h2>
+        <p class="my-4">Get weekly updates to your email</p>
+
+        <form class="ml-block-form" action="https://app.mailerlite.com/webforms/submit/x7m5e5" data-code="x7m5e5" method="POST" target="_blank">
+            <div class="field is-grouped">
+                <div class="control has-icons-left is-expanded">
+                    <input type="email" value="" name="fields[email]" class="input is-flat required email" id="email" placeholder="Email address" required="" aria-required="true">
+                </div>
+                <div class="control m-4">
+                    <input type="submit" value="Subscribe" name="subscribe" id="subscribe" class="button border-0">
+                </div>
+            </div>
+            <input type="hidden" name="ml-submit" value="1">
+        </form>
+    </div>
+</section>        </div>
+
+    <footer class="w-full bg-grey-lighter p-6">
+    <div class="my-8 container-md mx-auto flex justify-between">
+        <div class="w-full md:w-1/2">
+            <p class="mb-2 font-bold">PAULUND</p>
+            <p class="mb-2">Find me on</p>
+            <ul class="list-reset">
+                <li><a class="font-bold" href="https://github.com/paulund">Github</a></li>
+                <li><a class="font-bold" href="https://twitter.com/paulund">Twitter</a></li>
+                <li><a class="font-bold" href="https://paulund.co.uk/contact">Email</a></li>
+            </ul>
+            <p>Paulund ©2020 <a href="https://paulund.co.uk/privacy"><small>Privacy</small></a></p>
+        </div>
+
+        <div class="w-full md:w-1/2">
+            <ul class="list-reset text-right">
+                <li><a class="font-bold" href="https://paulund.co.uk/subjects">Subjects</a></li>
+                <li><a class="font-bold" href="https://paulund.co.uk/tools/all">Tools</a></li>
+                <li><a class="font-bold" href="https://paulund.co.uk/subject/resources">Resources</a></li>
+                <li><a class="font-bold" href="https://paulund.co.uk/about">About</a></li>
+                <li><a class="font-bold" href="https://paulund.co.uk/contact">Contact</a></li>
+                
+            </ul>
+        </div>
+
+    </div>
+</footer></div>
+
+<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Montserrat' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+  // ]]>
+</script>    <script src="./Display The Post Date In Wordpress - Paulund_files/prism.js.download"></script>
+<script src="./Display The Post Date In Wordpress - Paulund_files/ga-lite.min.js.download" async=""></script>
+<script>var galite = galite || {};galite.UA = 'UA-8196211-5';</script>
+
+
+</body></html>

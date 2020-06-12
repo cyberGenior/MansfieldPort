@@ -2,7 +2,7 @@
 
 if(isset($_POST['submit1'])){
 
-	$con=mysqli_connect('db4free.net:3306','xpress', 'freedom98','xegger'); 
+	$con=new mysqli('localhsot','root', '','velocity'); 
 
 	$First_name = $_POST['First_name'];
 
@@ -23,9 +23,9 @@ if(isset($_POST['submit1'])){
 	$Password_verify = $_POST['Password_verify'];
 
 
-	$stmt = $con->prepare("INSERT INTO `students` (First_name, Surname, DOB, SID, Email, Program, MOS) VALUES (?, ?, ?, ?, ?, ?, ?)");
+	$stmt = $con->prepare("INSERT INTO `students` (FIRST_NAME, SURNAME, DOB, SID, EMAIL, PROGRAM, MOS,password) VALUES (?, ?, ?, ?, ?, ? ,?,?)");
 
-	$stmt ->bind_param("sssisss",$First_name, $Surname, $DOB, $SID, $Email, $Program, $MOS);
+	$stmt ->bind_param("sssisss",$First_name, $Surname, $DOB, $SID, $Email, $Program, $MOS, $Password1);
 
 	$stmt->execute();
 
